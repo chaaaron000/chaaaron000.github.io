@@ -3,282 +3,493 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>이상현 — 게임 클라이언트 프로그래머 포트폴리오</title>
-<meta name="description" content="사람과 AI가 같은 데이터를 고치는 콘텐츠 제작 도구를 만드는 Unity 게임 클라이언트 프로그래머 이상현">
+<title>이상현 포트폴리오 | AI와 함께 쓰는 콘텐츠 제작 도구를 만드는 게임 개발자</title>
+<meta name="description" content="AI와 함께 쓰는 콘텐츠 제작 도구를 만드는 게임 개발자 이상현의 포트폴리오. Caldera 레벨 설계 편집기, PerfectHer 사건 편집 시스템, 화면 건너편의 너, GreenClean, MixterPiece, Nostalgia.">
+<meta name="theme-color" content="#f4f5f7">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://chaaaron000.github.io/">
+<meta property="og:title" content="이상현 포트폴리오">
+<meta property="og:description" content="AI와 함께 쓰는 콘텐츠 제작 도구를 만드는 게임 개발자. 편집기와 게임 화면을 함께 보여 드립니다.">
+<meta property="og:image" content="https://chaaaron000.github.io/media/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f141b'/%3E%3Cpath d='M7 8h18v16H7z' fill='none' stroke='%23e9edf2' stroke-width='2.5'/%3E%3Cpath d='M15 8v10' stroke='%2346d3c2' stroke-width='2.5'/%3E%3Ccircle cx='20.5' cy='19.5' r='2.2' fill='%23ffc83d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
+  /* 구성: 밝은 바탕에 짙은 잉크 글씨, 화면 캡처는 어두운 액자에 담는다.
+     노랑은 사람(나), 청록은 AI. 두 색은 면·점·밑줄로만 쓰고 그 위 글자는 항상 잉크색이다.
+     글자 크기는 다섯 단계: 라벨 / 본문 / 사례 제목 / 큰 제목 / 프로젝트 제목.
+     회색(--muted)은 기간·인원·기술 같은 메타 정보와 라벨에만 쓴다. */
   :root {
-    --paper: #e9edf1;
-    --panel: #f7f9fa;
-    --ink: #17222d;
-    --muted: #5a6875;
-    --line: #c9d2da;
-    --grid: #d6dde4;
-    --select: #ffc93c;
-    --human: #2f5bd3;
-    --ai: #0f8b8d;
-    --sans: "IBM Plex Sans KR", system-ui, sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    color-scheme: light;
+    --bg: #f4f5f7;
+    --bg-alt: #eaedf1;
+    --panel: #ffffff;
+    --sunk: #e1e5ea;
+    --line: #d3d8df;
+    --line-2: #76818e;
+    --text: #11161d;
+    --muted: #535e6b;
+    --me: #ffc83d;
+    --me-edge: #a87900;
+    --ai: #3fd0be;
+    --ai-edge: #0d8577;
+    --frame: #10151c;
+    --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --gutter: max(20px, 4vw);
+    --nav-h: 56px;
+    --sheet-r: 28px;
+    --fs-label: 14px;
+    --fs-body: 17px;
+    --fs-case: 24px;
+    --fs-title: clamp(30px, 3.25vw, 46px);
+    --fs-display: clamp(40px, 5.4vw, 76px);
+  }
+  /* 어두운 화면 영역: 도식, 코드, 맺음 면. 같은 토큰 이름을 어두운 값으로 다시 정의한다. */
+  .tile-media, .view svg, pre.code, footer {
+    --bg: #0f141b;
+    --panel: #171f2a;
+    --panel-2: #1e2835;
+    --line: #283342;
+    --line-2: #3a4759;
+    --dim: #6b7989;
+    --text: #e9edf2;
+    --muted: #9aa7b5;
+    --ai: #46d3c2;
+    color: var(--text);
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font: 400 16.5px/1.75 var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font: 400 var(--fs-body)/1.7 var(--sans);
     word-break: keep-all;
-    -webkit-font-smoothing: antialiased;
+    overflow-wrap: anywhere;
   }
-  a { color: inherit; text-decoration-color: var(--select); text-decoration-thickness: 3px; text-underline-offset: 4px; }
-  a:hover { background: var(--select); text-decoration: none; }
-  :focus-visible { outline: 3px solid var(--human); outline-offset: 2px; }
-  code { font-family: var(--mono); font-size: .88em; background: #dfe5ea; padding: 1px 5px; border-radius: 3px; }
+  img, video, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: underline; text-decoration-color: var(--line-2); text-decoration-thickness: 1.5px; text-underline-offset: 5px; }
+  a:hover { text-decoration-color: currentColor; }
+  :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; border-radius: 2px; }
+  code { font-family: var(--mono); font-size: .88em; background: var(--sunk); padding: 2px 6px; border-radius: 4px; }
+  p { margin: 0; }
+  ul { margin: 0; padding-left: 1.15em; }
+  li::marker { color: var(--muted); }
+  b, strong { font-weight: 750; }
+  .wrap { max-width: calc(1240px + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
 
-  /* 전체 틀: 왼쪽 계층 패널 + 오른쪽 본문 */
-  .shell { display: grid; grid-template-columns: 272px 1fr; min-height: 100vh; }
-  aside.hierarchy {
-    position: sticky; top: 0; height: 100vh; overflow-y: auto;
-    border-right: 1px solid var(--line); background: var(--panel);
-    padding: 36px 24px; display: flex; flex-direction: column; gap: 28px;
+  /* 상단 이동 줄 */
+  .nav { position: sticky; top: 0; z-index: 20; height: var(--nav-h); background: color-mix(in srgb, var(--bg) 93%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { height: 100%; display: flex; align-items: center; gap: 28px; }
+  .brand { font-weight: 800; text-decoration: none; white-space: nowrap; }
+  .nav-links { display: flex; gap: 2px; margin: 0 0 0 auto; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { display: block; padding: 6px 11px; border-radius: 4px; font-size: var(--fs-label); font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+  .nav-links a:hover { color: var(--text); background: var(--sunk); }
+  .nav-links a.active { color: var(--panel); background: var(--text); font-weight: 600; }
+  .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--text); transform-origin: 0 50%; transform: scaleX(0); }
+
+  /* 첫 화면 */
+  .hero { padding-block: 44px 64px; }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 664px); gap: 64px; align-items: center; }
+  .hero-name { font-size: var(--fs-label); color: var(--muted); margin-bottom: 18px; display: flex; gap: 10px; align-items: baseline; }
+  .hero-name b { font-size: var(--fs-case); color: var(--text); font-weight: 800; }
+  .hero h1 { margin: 0 0 24px; font-size: var(--fs-title); line-height: 1.26; font-weight: 800; letter-spacing: -0.025em; }
+  .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--me) 50%, var(--ai) 50%) no-repeat 0 100% / 100% .3em; }
+  .hero .lead { max-width: 30em; margin-bottom: 28px; }
+  .key { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: var(--fs-label); font-weight: 600; margin: 0 0 28px; padding: 0; list-style: none; }
+  .key li { display: flex; align-items: center; gap: 8px; }
+  .dot { display: inline-block; width: 12px; height: 12px; border-radius: 3px; flex: none; border: 1.5px solid; }
+  .dot.me { background: var(--me); border-color: var(--me-edge); }
+  .dot.ai { background: var(--ai); border-color: var(--ai-edge); }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 6px 22px; font-weight: 600; }
+
+  .mosaic { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 14px; }
+  .tile { display: block; text-decoration: none; min-width: 0; }
+  .tile-media { aspect-ratio: 16 / 9; background: var(--bg); border: 5px solid var(--frame); border-radius: 10px; overflow: hidden; box-shadow: 0 16px 30px -20px rgba(16, 21, 28, .6); transition: transform .2s ease; }
+  .tile:hover .tile-media { transform: translateY(-3px); }
+  .tile-media > img, .tile-media > video { width: 100%; height: 100%; object-fit: cover; }
+  .tile-media > svg { width: 100%; height: 100%; }
+  .tile-cap { display: flex; align-items: baseline; gap: 8px; padding: 9px 4px 0; font-size: var(--fs-label); line-height: 1.45; min-width: 0; }
+  .tile-cap b { white-space: nowrap; }
+  .tile-cap span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+  .tag { margin-left: auto; font: 500 var(--fs-label)/1.4 var(--sans); color: var(--muted); border: 1px solid var(--line-2); border-radius: 3px; padding: 0 6px; white-space: nowrap; }
+
+  /* 소개 */
+  .about { border-top: 1px solid var(--line); padding-block: 44px 84px; }
+  .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px 40px; margin: 0; }
+  .facts div { min-width: 0; }
+  .facts dt { font-size: var(--fs-label); font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+  .facts dd { margin: 0; line-height: 1.6; }
+
+  /* 프로젝트: 한 주제가 한 장. 다음 장이 앞 장 위로 올라온다. */
+  .project { position: relative; background: var(--bg); padding-block: 112px 132px; margin-top: calc(-1 * var(--sheet-r)); border-radius: var(--sheet-r) var(--sheet-r) 0 0; box-shadow: 0 -1px 0 var(--line), 0 -22px 48px -22px rgba(16, 21, 28, .2); overflow: clip; }
+  .project:nth-of-type(even) { background: var(--bg-alt); }
+  .p-head { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 24px 56px; margin-bottom: 44px; }
+  .p-title { min-width: 0; }
+  .p-kicker { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .num { font: 500 var(--fs-label)/1.5 var(--mono); color: var(--muted); }
+  .status { font: 600 var(--fs-label)/1.5 var(--sans); border: 1px solid var(--line-2); border-radius: 3px; padding: 1px 9px; }
+  .status.done { color: var(--panel); background: var(--text); border-color: var(--text); }
+  .project h2 { margin: 0; font-size: var(--fs-display); line-height: 1.08; font-weight: 800; letter-spacing: -0.035em; }
+  .p-sum { flex: 1 1 400px; max-width: 600px; margin-left: auto; min-width: 0; display: grid; gap: 14px; }
+  .p-what { font-size: var(--fs-case); line-height: 1.5; letter-spacing: -0.01em; }
+  .p-meta { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 0; font-size: var(--fs-label); color: var(--muted); }
+  .p-meta div { display: flex; gap: 8px; min-width: 0; }
+  .p-meta dt { font-weight: 700; white-space: nowrap; }
+  .p-meta dd { margin: 0; }
+
+  /* 매체: 어두운 액자 */
+  figure { margin: 0; }
+  .shot img, .shot video, .stage img, .stage video, .yt { width: 100%; height: auto; border: 6px solid var(--frame); border-radius: 12px; background: #000; box-shadow: 0 24px 44px -28px rgba(16, 21, 28, .6); }
+  figcaption { margin-top: 12px; line-height: 1.55; }
+  .stage { margin-bottom: 8px; }
+  .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .yt { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; }
+  .yt img, .yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; border-radius: 0; box-shadow: none; }
+  .yt .play { position: absolute; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%; background: var(--panel); box-shadow: 0 8px 24px rgba(0, 0, 0, .45); transition: transform .15s ease; }
+  .yt .play::after { content: ""; position: absolute; left: 33px; top: 27px; border: 15px solid transparent; border-left: 24px solid var(--text); border-right: 0; }
+  .yt:hover .play { transform: scale(1.08); }
+  .steam { max-width: 646px; margin-top: 28px; }
+  .steam iframe { width: 100%; height: 190px; border: 0; display: block; color-scheme: light; }
+
+  /* 사례: 이름 옆에 짧은 설명 */
+  .case { margin-top: 88px; padding-top: 30px; border-top: 1px solid var(--line); }
+  .case.first { margin-top: 0; padding-top: 0; border-top: 0; }
+  .case h3 { margin: 0 0 24px; font-size: var(--fs-case); line-height: 1.35; font-weight: 800; letter-spacing: -0.015em; }
+  .case h3 span { font-size: var(--fs-body); font-weight: 400; letter-spacing: 0; margin-left: 12px; }
+  .split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: start; }
+  .split.even { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .split.g48 { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); }
+  .split.g3 { grid-template-columns: minmax(0, 3fr) minmax(0, 4.9fr) minmax(0, 4.1fr); }
+  .txt { display: grid; gap: 14px; max-width: 34em; min-width: 0; }
+  .txt.wide { max-width: 44em; }
+  .txt ul { display: grid; gap: 8px; }
+  .txt .result { font-weight: 650; padding-left: 16px; border-left: 4px solid var(--text); }
+  .stack { display: grid; gap: 28px; min-width: 0; }
+
+  /* 흐름도: 상자에는 이름과 누가 하는지만. 설명은 아래 문장으로. */
+  .flow { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 36px; }
+  .flow > li, .flow .node { background: var(--panel); border: 1px solid var(--line-2); border-radius: 8px; padding: 12px 16px 13px; display: grid; gap: 1px; align-content: center; min-width: 0; }
+  .flow > li { flex: 1 1 0; position: relative; min-height: 70px; }
+  .flow > li + li::before { content: ""; position: absolute; left: -29px; top: 50%; width: 21px; height: 2px; margin-top: -1px; background: var(--text); }
+  .flow > li + li::after { content: ""; position: absolute; left: -16px; top: 50%; width: 8px; height: 8px; border-top: 2px solid var(--text); border-right: 2px solid var(--text); transform: translateY(-50%) rotate(45deg); }
+  .flow > li.group { background: none; border: 0; padding: 0; gap: 8px; align-content: stretch; }
+  .flow .me { background: var(--me); border-color: var(--me-edge); }
+  .flow .ai { background: var(--ai); border-color: var(--ai-edge); }
+  .flow small { font: 600 var(--fs-label)/1.4 var(--sans); }
+  .flow b { line-height: 1.4; }
+  .flow-note { margin-top: 20px; max-width: 46em; }
+
+  /* 순서 목록: 번호, 이름(또는 누가), 한 문장 */
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; border-top: 1px solid var(--line); }
+  .steps li { counter-increment: step; display: grid; grid-template-columns: 2em 10em minmax(0, 1fr); gap: 0 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .steps li::before { content: counter(step); font: 500 var(--fs-label) var(--mono); color: var(--muted); }
+  .steps b { display: flex; align-items: center; gap: 9px; }
+
+  /* 큰 수치 한 줄 */
+  .fig { display: flex; align-items: center; gap: 12px 28px; }
+  .fig > b, .stats > div > b { font-size: var(--fs-title); line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .fig > b i, .stats > div > b i { font-style: normal; font-size: var(--fs-body); font-weight: 700; letter-spacing: 0; margin-left: 4px; }
+  .fig > span { max-width: 34em; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 44px; }
+  .stats div { min-width: 0; }
+  .stats > div > b { display: block; margin-bottom: 12px; }
+  .stats strong, .stats span { display: block; line-height: 1.6; }
+
+  /* 역할 구분, 기여 범위 */
+  .roles-wrap { margin-top: 88px; padding-top: 30px; border-top: 1px solid var(--line); }
+  .label { font-size: var(--fs-label); font-weight: 700; color: var(--muted); margin-bottom: 16px; }
+  .roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; }
+  .role { min-width: 0; }
+  .role h4 { display: inline-block; margin: 0 0 14px; font-size: var(--fs-body); line-height: 1.5; font-weight: 800; padding: 3px 12px; border-radius: 4px; background: var(--sunk); }
+  .role ul { display: grid; gap: 7px; }
+  .role.me h4 { background: var(--me); }
+  .role.ai h4 { background: var(--ai); }
+  .role.mine h4 { background: var(--text); color: var(--panel); }
+
+  /* 도구 목록, 표, 코드 */
+  .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 44px; }
+  .tools div { min-width: 0; display: grid; gap: 8px; align-content: start; }
+  .tools b { font-family: var(--mono); font-weight: 700; }
+  .kv { margin: 0; border-top: 1px solid var(--line); }
+  .kv div { display: grid; grid-template-columns: 4.4em 3.4em minmax(0, 1fr); gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .kv dt { font-family: var(--mono); font-weight: 700; }
+  .kv dd { margin: 0; min-width: 0; }
+  .kv dd.role-of { font-weight: 750; }
+  pre.code { margin: 0; background: var(--bg); border-radius: 10px; padding: 16px 18px; font: 400 var(--fs-label)/1.75 var(--mono); overflow-x: auto; white-space: pre; word-break: normal; overflow-wrap: normal; }
+  pre.code .c { color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; }
+  .chips li { font-weight: 600; background: var(--panel); border: 1px solid var(--line-2); border-radius: 6px; padding: 3px 14px; }
+
+  /* Caldera 도식: 같은 도면, 세 가지 보기 */
+  .views-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .view { min-width: 0; }
+  .view svg { width: 100%; height: auto; background: var(--bg); border: 6px solid var(--frame); border-radius: 12px; box-shadow: 0 24px 44px -28px rgba(16, 21, 28, .6); }
+  .view p { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; margin-top: 12px; line-height: 1.55; }
+  .views figcaption { margin-top: 22px; }
+  kbd { font: 500 var(--fs-label) var(--mono); background: var(--panel); border: 1px solid var(--line-2); border-bottom-width: 2px; border-radius: 4px; padding: 0 6px; }
+  .v-grid path { stroke: var(--line); stroke-width: 1; fill: none; opacity: .6; }
+  .v-wall path { stroke: var(--text); stroke-width: 5; stroke-linecap: square; fill: none; }
+  .v-door { stroke: var(--muted); stroke-width: 1.2; fill: none; }
+  .v-room { fill: var(--text); font: 600 12px var(--sans); }
+  .v-area { fill: var(--muted); font-weight: 400; font-size: 11px; }
+  .v-new { stroke: var(--ai); stroke-width: 6; stroke-linecap: square; fill: none; stroke-dasharray: var(--len); }
+  .v-cur-ai path, .v-cur-ai rect { fill: var(--ai); }
+  .v-cur-me path, .v-cur-me rect, .v-pin rect, .v-pin circle { fill: var(--me); }
+  .v-pin path { stroke: var(--me); stroke-width: 1.5; }
+  .v-cur-ai text, .v-cur-me text, .v-pin text { fill: var(--bg); font: 700 11px var(--sans); }
+  .v-floor { fill: #1a232e; } .v-ceil { fill: #121820; }
+  .v-top { fill: var(--text); } .v-side-a { fill: #8794a5; } .v-side-b { fill: #5c6979; }
+  .v-top, .v-side-a, .v-side-b { stroke: var(--bg); stroke-width: .6; stroke-linejoin: round; }
+  .v-newbox .v-top { fill: #a9f1e8; } .v-newbox .v-side-a, .v-newface.v-side-a { fill: var(--ai); } .v-newbox .v-side-b, .v-newface.v-side-b { fill: #2a9d90; }
+  .v-cross { stroke: var(--text); stroke-width: 1; fill: none; opacity: .7; }
+  /* PerfectHer 타일 도식 */
+  .d-box { fill: var(--bg); stroke: var(--line-2); stroke-width: 1; }
+  .d-file { fill: var(--panel-2); stroke: var(--text); stroke-width: 1.2; }
+  .d-t { fill: var(--text); font: 600 12px var(--sans); }
+  .d-s { fill: var(--muted); font: 400 10.5px var(--sans); }
+  .d-arrow { stroke: var(--dim); stroke-width: 1.2; fill: none; }
+  .d-me { fill: var(--me); } .d-ai { fill: var(--ai); }
+
+  .links { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 64px; font-weight: 700; }
+  .links .private { font-weight: 400; }
+  .links a::after { content: " ↗"; font-weight: 400; }
+
+  footer { position: relative; margin-top: calc(-1 * var(--sheet-r)); border-radius: var(--sheet-r) var(--sheet-r) 0 0; background: var(--bg); padding-block: 88px 104px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 28px 56px; }
+  footer h2 { margin: 0 0 6px; font-size: var(--fs-title); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; }
+  .contact { display: grid; gap: 6px; font-size: var(--fs-case); font-weight: 600; }
+
+  /* 움직임 */
+  @keyframes draw { from { stroke-dashoffset: var(--len); } to { stroke-dashoffset: 0; } }
+  @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes rise { 0% { opacity: 0; transform: translateY(44px); } 60% { opacity: 1; } 100% { opacity: 1; transform: none; } }
+  @keyframes settle { 0% { opacity: 0; transform: translateY(64px) scale(.95); } 55% { opacity: 1; } 100% { opacity: 1; transform: none; } }
+  @keyframes recede { to { transform: translateY(18vh); } }
+  @keyframes grow { to { transform: scaleX(1); } }
+  /* 지금 어디쯤인지: 상단 줄 아래 진행 막대. 스크롤 위치에 묶여 있어 움직임 줄이기 설정에서도 둔다. */
+  @supports (animation-timeline: scroll()) {
+    .progress { animation: grow linear both; animation-timeline: scroll(root block); }
   }
-  .who h1 { font-size: 26px; line-height: 1.3; margin: 0 0 4px; font-weight: 700; }
-  .who p { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.55; }
-  .tree { list-style: none; margin: 0; padding: 0; font-size: 15px; }
-  .tree li { margin: 0; }
-  .tree a { display: block; padding: 5px 10px; border-radius: 3px; text-decoration: none; color: var(--muted); }
-  .tree a:hover { background: #e3e9ee; color: var(--ink); }
-  .tree a.active { background: var(--select); color: var(--ink); font-weight: 600; }
-  .tree .group { font-size: 13px; color: var(--muted); padding: 14px 10px 4px; }
-  .tree .sub a { padding-left: 22px; }
-  .contact { margin-top: auto; font-size: 14px; line-height: 1.8; }
-  .contact a { color: var(--ink); }
+  @media (prefers-reduced-motion: no-preference) {
+    .tile .v-new { animation: draw 1.3s .5s ease-out backwards; }
+    .tile .v-cur-ai { animation: appear .3s .2s backwards; }
+    .views.play .v-new { animation: draw 1.3s .2s ease-out backwards; }
+    .views.play .v-newbox, .views.play .v-newface { animation: appear .5s 1.3s backwards; }
 
-  main { min-width: 0; }
-  .col { max-width: 860px; padding: 0 56px; }
-
-  /* 첫 화면: 도면 편집 장면 */
-  .hero { position: relative; padding: 72px 0 56px; border-bottom: 1px solid var(--line);
-    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 24px 24px; }
-  .hero h2 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.3; margin: 0 0 18px; font-weight: 700; letter-spacing: -0.01em; max-width: 16em; }
-  .hero .lead { font-size: 18px; color: var(--muted); max-width: 36em; margin: 0 0 36px; }
-  .plan { width: 100%; max-width: 760px; display: block; background: var(--panel); border: 1px solid var(--line); border-radius: 4px; }
-  .plan .wall { stroke: var(--ink); stroke-width: 6; stroke-linecap: square; fill: none; }
-  .plan .room { font: 500 13px var(--sans); fill: var(--muted); }
-  .plan .door { stroke: var(--muted); stroke-width: 1.5; fill: none; }
-  .plan .new { stroke: var(--select); stroke-width: 7; stroke-linecap: square; stroke-dasharray: 170; stroke-dashoffset: 170; animation: draw 1.6s .6s ease-out forwards; }
-  .plan .tag { font: 600 12px var(--sans); }
-  .plan .pin { opacity: 0; animation: pop .4s 2.3s ease-out forwards; }
-  .plan .cur-ai { opacity: 0; animation: pop .3s .3s ease-out forwards; }
-  @keyframes draw { to { stroke-dashoffset: 0; } }
-  @keyframes pop { to { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .plan .new { animation: none; stroke-dashoffset: 0; }
-    .plan .pin, .plan .cur-ai { animation: none; opacity: 1; }
+    /* 장면 전환: 스크롤 위치에 묶인 등장. 시간이 아니라 위치를 따라가므로 빠르게 넘겨도 빈 화면이 생기지 않는다. */
+    @supports (animation-timeline: view()) {
+      .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% cover 26%; }
+      .reveal-media { animation: settle linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
+      /* 앞 장의 끝이 천천히 물러나고 다음 장이 그 위로 올라온다. */
+      .project:not(:last-of-type) > .wrap { animation: recede cubic-bezier(.42, 0, 1, 1) both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+    }
+    /* 스크롤 연동을 못 쓰는 브라우저: 화면 아래에 있던 것만 들어올 때 한 번 떠오른다(스크립트가 .pre를 붙였다 뗀다). */
+    @supports not (animation-timeline: view()) {
+      .reveal, .reveal-media { transition: opacity .6s ease, transform .6s cubic-bezier(.2, .7, .2, 1); }
+      .reveal.pre, .reveal-media.pre { opacity: 0; transform: translateY(32px); }
+      .reveal.now, .reveal-media.now { transition: none; }
+    }
   }
-  .plan-note { font-size: 14px; color: var(--muted); margin: 10px 0 0; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-  /* 인스펙터 같은 정보 표 */
-  .fields { display: grid; grid-template-columns: 9em 1fr; margin: 0; font-size: 15.5px; border-top: 1px solid var(--line); max-width: 44em; }
-  .fields dt, .fields dd { margin: 0; padding: 9px 0; border-bottom: 1px solid var(--line); }
-  .fields dt { color: var(--muted); }
-  .about { padding: 48px 0; border-bottom: 1px solid var(--line); }
-  .about h3 { margin-top: 0; }
-
-  /* 프로젝트 */
-  section.project { padding: 72px 0 64px; border-bottom: 1px solid var(--line); }
-  .status { display: inline-block; font-size: 13px; font-weight: 600; padding: 1px 9px; border-radius: 3px; background: var(--ink); color: var(--panel); margin-bottom: 14px; }
-  .status.done { background: var(--select); color: var(--ink); }
-  section.project h2 { font-size: clamp(26px, 2.8vw, 34px); line-height: 1.3; margin: 0 0 6px; font-weight: 700; }
-  .what { font-size: 18px; color: var(--muted); margin: 0 0 24px; max-width: 36em; }
-  section.project .fields { margin-bottom: 32px; }
-  h3 { font-size: 19px; line-height: 1.4; margin: 40px 0 10px; font-weight: 700; }
-  p { margin: 0 0 14px; max-width: 40em; }
-  ul.points { padding-left: 1.1em; margin: 0 0 14px; max-width: 40em; }
-  ul.points li { margin-bottom: 6px; }
-  ul.points li::marker { color: var(--muted); }
-
-  /* 인스펙터 컴포넌트 모양 패널 */
-  .component { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; margin: 28px 0; }
-  .component > header { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 600; background: #eef2f5; border-radius: 4px 4px 0 0; }
-  .component > header::before { content: ""; border: 5px solid transparent; border-top-color: var(--muted); margin-top: 5px; }
-  .component > div { padding: 16px 18px 4px; }
-
-  /* 사람 / AI 역할 */
-  .roles { display: grid; grid-template-columns: 1fr 1fr; margin: 28px 0; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: var(--panel); }
-  .roles > div { padding: 16px 20px 10px; }
-  .roles > div + div { border-left: 1px solid var(--line); }
-  .roles h4 { margin: 0 0 8px; font-size: 14.5px; display: flex; align-items: center; gap: 8px; }
-  .roles h4::before { content: ""; width: 10px; height: 10px; border-radius: 2px; }
-  .roles .human h4 { color: var(--human); } .roles .human h4::before { background: var(--human); }
-  .roles .ai h4 { color: var(--ai); } .roles .ai h4::before { background: var(--ai); }
-  .roles ul { margin: 0; padding-left: 1.1em; font-size: 15px; }
-  .roles li { margin-bottom: 5px; }
-
-  /* 수치 */
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 20px; margin: 24px 0; border-top: 2px solid var(--ink); }
-  .stats > div { padding: 14px 0 6px; }
-  .stats b { display: block; font-size: 21px; line-height: 1.35; margin-bottom: 4px; }
-  .stats span { font-size: 14.5px; color: var(--muted); display: block; line-height: 1.6; }
-
-  /* 흐름 */
-  ol.steps { margin: 20px 0; padding-left: 1.4em; max-width: 42em; }
-  ol.steps li { padding-left: 6px; margin-bottom: 12px; }
-  ol.steps li::marker { font-weight: 700; }
-
-  /* 매체 */
-  figure { margin: 28px 0; }
-  .media { background: var(--panel); border: 1.5px dashed var(--line); border-radius: 4px; aspect-ratio: 16 / 9;
-    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px;
-    text-align: center; color: var(--muted); font-size: 14px; padding: 24px; overflow: hidden; }
-  .media.loaded { border: 1px solid var(--line); padding: 0; background: #000; }
-  .media img, .media video { width: 100%; height: 100%; object-fit: contain; display: block; }
-  figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; }
-  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .pair figure { margin: 0; }
-  .embed { aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: #000; margin: 28px 0; }
-  .embed iframe { width: 100%; height: 100%; border: 0; display: block; }
-  .steam { margin: 24px 0; max-width: 646px; }
-  .steam iframe { width: 100%; height: 190px; border: 0; }
-
-  .tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0; }
-  .tools .component { margin: 0; }
-  .tools p { font-size: 15px; }
-
-  .own { font-size: 14.5px; color: var(--muted); max-width: 44em; }
-  .lesson { font-weight: 600; padding-left: 14px; border-left: 4px solid var(--select); }
-  .links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px; font-size: 15px; font-weight: 600; }
-  .private { color: var(--muted); font-weight: 400; }
-
-  footer { padding: 48px 0 80px; color: var(--muted); font-size: 14.5px; }
-
-  @media (max-width: 960px) {
-    .shell { grid-template-columns: 1fr; }
-    aside.hierarchy { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 28px 24px; }
-    .tree { display: flex; flex-wrap: wrap; gap: 4px; }
-    .tree .group { display: none; }
-    .tree .sub a { padding-left: 10px; }
-    .contact { margin-top: 0; }
-    .col { padding: 0 24px; }
+  @media (max-width: 1080px) {
+    .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .flow { flex-direction: column; align-items: stretch; gap: 30px; }
+    .flow > li { min-height: 0; flex: none; }
+    .flow > li + li::before { left: 27px; top: -25px; width: 2px; height: 19px; margin: 0; }
+    .flow > li + li::after { left: 24px; top: -12px; transform: rotate(135deg); }
+    .flow > li.group { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-  @media (max-width: 640px) {
-    .roles, .pair, .tools, .stats { grid-template-columns: 1fr; }
-    .roles > div + div { border-left: 0; border-top: 1px solid var(--line); }
-    .fields { grid-template-columns: 6em 1fr; }
+  @media (max-width: 860px) {
+    .split, .split.even, .split.g48 { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .split.g3 { grid-template-columns: minmax(0, 3fr) minmax(0, 4.9fr); gap: 28px 16px; }
+    .split.g3 > .txt { grid-column: 1 / -1; }
+    .txt { max-width: none; }
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tools, .stats, .views-grid { grid-template-columns: minmax(0, 1fr); }
+    .project { padding-block: 80px 124px; }
+    .case, .roles-wrap { margin-top: 64px; }
+    .p-sum { margin-left: 0; }
+    .steps li { grid-template-columns: 2em minmax(0, 1fr); }
+    .steps li span { grid-column: 2; }
+  }
+  @media (max-width: 600px) {
+    :root { --fs-body: 16px; --fs-case: 21px; --sheet-r: 20px; }
+    .nav .wrap { gap: 14px; }
+    .hero { padding-block: 28px 44px; }
+    .mosaic { gap: 14px 10px; }
+    .tile-media { border-width: 4px; border-radius: 8px; }
+    .tile-cap { flex-direction: column; gap: 0; padding: 7px 2px 0; }
+    .tile-cap span { max-width: 100%; white-space: normal; }
+    .tile-cap .tag { display: none; }
+    .facts { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .pair, .roles { grid-template-columns: minmax(0, 1fr); }
+    .roles { gap: 28px 0; }
+    .shot img, .shot video, .stage img, .stage video, .yt, .view svg { border-width: 4px; border-radius: 9px; }
+    .case h3 span { display: block; margin: 4px 0 0; }
+    .kv div { grid-template-columns: 4.4em minmax(0, 1fr); }
+    .kv dd.ex { grid-column: 1 / -1; }
+    .fig { flex-direction: column; align-items: flex-start; }
+    .yt .play { transform: scale(.75); }
+    .yt:hover .play { transform: scale(.8); }
+    pre.code { white-space: pre-wrap; overflow-wrap: anywhere; }
   }
 </style>
 </head>
 <body>
-<div class="shell">
 
-<aside class="hierarchy">
-  <div class="who">
-    <h1>이상현</h1>
-    <p>Unity 게임 클라이언트 프로그래머</p>
-  </div>
-  <nav aria-label="프로젝트 목록">
-    <ul class="tree">
+<nav class="nav" aria-label="섹션 이동">
+  <div class="wrap">
+    <a class="brand" href="#top">이상현</a>
+    <ul class="nav-links">
       <li><a href="#about">소개</a></li>
       <li><a href="#workflow">AI 작업 환경</a></li>
-      <li class="group">개발 중</li>
-      <li class="sub"><a href="#caldera">Caldera</a></li>
-      <li class="sub"><a href="#perfecther">PerfectHer</a></li>
-      <li class="sub"><a href="#beyond">화면 건너편의 너</a></li>
-      <li class="group">완료</li>
-      <li class="sub"><a href="#greenclean">GreenClean</a></li>
-      <li class="sub"><a href="#mixterpiece">MixterPiece</a></li>
-      <li class="sub"><a href="#nostalgia">Nostalgia</a></li>
+      <li><a href="#caldera">Caldera</a></li>
+      <li><a href="#perfecther">PerfectHer</a></li>
+      <li><a href="#beyond">화면 건너편의 너</a></li>
+      <li><a href="#greenclean">GreenClean</a></li>
+      <li><a href="#mixterpiece">MixterPiece</a></li>
+      <li><a href="#nostalgia">Nostalgia</a></li>
     </ul>
-  </nav>
-  <div class="contact">
-    <a href="mailto:bjpowerll12967@gmail.com">bjpowerll12967@gmail.com</a><br>
-    <a href="https://github.com/chaaaron000">github.com/chaaaron000</a>
   </div>
-</aside>
+  <span class="progress" aria-hidden="true"></span>
+</nav>
 
-<main>
+<main id="top">
 
+<!-- 첫 화면: 무엇을 만드는 사람인지 + 여섯 프로젝트의 화면 -->
 <header class="hero">
-  <div class="col">
-    <h2>사람과 AI가 같은 데이터를 고치는 콘텐츠 제작 도구를 만듭니다</h2>
-    <p class="lead">기능 하나를 구현하는 것보다, 콘텐츠가 계속 늘어날 수 있는 구조를 만드는 데 집중해 왔습니다. 지금은 사람이 쓰는 편집기와 AI 에이전트가 쓰는 인터페이스를 같은 데이터 위에 세우고, 그 위에서 게임을 만들고 있습니다.</p>
+  <div class="wrap">
+    <div class="hero-text">
+      <p class="hero-name"><b>이상현</b> 게임 개발자 포트폴리오</p>
+      <h1><em>AI와 함께 쓰는</em><br>콘텐츠 제작 도구를 만드는<br>게임 개발자</h1>
+      <p class="lead">사람이 쓰는 편집기와 AI 에이전트가 쓰는 인터페이스를 같은 데이터 위에 세우고, 그 위에서 게임을 만듭니다.</p>
+      <ul class="key" aria-label="색 구분">
+        <li><span class="dot me"></span>제가 정한 것</li>
+        <li><span class="dot ai"></span>AI에게 맡긴 것</li>
+      </ul>
+      <p class="hero-links">
+        <a href="mailto:bjpowerll12967@gmail.com">bjpowerll12967@gmail.com</a>
+        <a href="https://github.com/chaaaron000">github.com/chaaaron000</a>
+      </p>
+    </div>
 
-    <svg class="plan" viewBox="0 0 760 330" role="img" aria-label="레벨 편집기에서 사람과 AI 에이전트가 같은 평면도를 함께 고치는 장면">
-      <g class="wall">
-        <path d="M40 40 H720 V290 H40 Z"/>
-        <path d="M300 40 V150"/><path d="M300 200 V290"/>
-        <path d="M300 170 H520"/><path d="M570 170 H720"/>
-      </g>
-      <path class="door" d="M300 150 A50 50 0 0 1 350 200"/>
-      <path class="door" d="M520 170 A50 50 0 0 0 570 120"/>
-      <text class="room" x="186" y="120">거실 32.4㎡</text>
-      <text class="room" x="470" y="110">침실 18.0㎡</text>
-      <text class="room" x="470" y="240">주방 15.6㎡</text>
-      <path class="new" d="M160 40 V200"/>
-      <g class="cur-ai">
-        <path d="M160 200 l0 22 l6 -6 l8 13 l4 -2 l-8 -13 l9 -1 Z" fill="var(--ai)"/>
-        <rect x="182" y="218" width="104" height="22" rx="3" fill="var(--ai)"/>
-        <text class="tag" x="190" y="233" fill="#fff">에이전트 (MCP)</text>
-      </g>
-      <g>
-        <path d="M600 250 l0 22 l6 -6 l8 13 l4 -2 l-8 -13 l9 -1 Z" fill="var(--human)"/>
-        <rect x="622" y="268" width="36" height="22" rx="3" fill="var(--human)"/>
-        <text class="tag" x="632" y="283" fill="#fff">나</text>
-      </g>
-      <g class="pin">
-        <circle cx="62" cy="262" r="9" fill="var(--select)" stroke="var(--ink)" stroke-width="2"/>
-        <rect x="76" y="248" width="168" height="28" rx="3" fill="var(--ink)"/>
-        <text class="tag" x="86" y="267" fill="#fff">메모: 거실을 둘로 나눠 줘</text>
-      </g>
-    </svg>
-    <p class="plan-note">Caldera 레벨 편집기에서 일하는 방식을 그린 그림입니다. 제가 도면에 메모를 남기면, 같은 도면에 붙은 에이전트가 벽을 그립니다.</p>
+    <div class="mosaic">
+      <a class="tile" href="#caldera">
+        <div class="tile-media" data-media="media/caldera-editor.mp4" data-mode="swap" data-alt="Caldera 레벨 설계 편집기">
+          <svg viewBox="0 0 360 202" role="img" aria-label="2D 도면: 에이전트가 거실에 벽을 그리고 있다"><g class="v-grid"><path d="M65 14.8V187.3"/><path d="M88 14.8V187.3"/><path d="M111 14.8V187.3"/><path d="M134 14.8V187.3"/><path d="M157 14.8V187.3"/><path d="M180 14.8V187.3"/><path d="M203 14.8V187.3"/><path d="M226 14.8V187.3"/><path d="M249 14.8V187.3"/><path d="M272 14.8V187.3"/><path d="M295 14.8V187.3"/><path d="M65 14.8H295"/><path d="M65 49.3H295"/><path d="M65 83.8H295"/><path d="M65 118.3H295"/><path d="M65 152.8H295"/><path d="M65 187.3H295"/></g><g class="v-wall"><path d="M65 14.8L295 14.8"/><path d="M295 14.8L295 187.3"/><path d="M295 187.3L65 187.3"/><path d="M65 187.3L65 14.8"/><path d="M191.5 14.8L191.5 118.3"/><path d="M191.5 141.3L191.5 187.3"/><path d="M191.5 95.3L237.5 95.3"/><path d="M260.5 95.3L295 95.3"/></g><path class="v-door" d="M191.5 118.3A23 23 0 0 1 214.5 141.3"/><path class="v-door" d="M237.5 95.3A23 23 0 0 0 260.5 72.3"/><text class="v-room" x="75.4" y="160.8">거실<tspan class="v-area" x="75.4" dy="15">41.3㎡</tspan></text><text class="v-room" x="203" y="49.3">침실<tspan class="v-area" x="203" dy="15">15.8㎡</tspan></text><text class="v-room" x="249" y="119.4">주방<tspan class="v-area" x="249" dy="15">18.0㎡</tspan></text><path class="v-new" style="--len:109.3" d="M128.3 14.8L128.3 124"/><g class="v-cur-ai"><path d="M128.3 124l0 20 5.5-5.5 7 12 3.6-1.8-7-12 8-1Z"/><rect x="144.3" y="140" width="56" height="20" rx="3"/><text x="151.3" y="154">에이전트</text></g><g class="v-cur-me"><path d="M223.7 141.3l0 20 5.5-5.5 7 12 3.6-1.8-7-12 8-1Z"/><rect x="239.7" y="157.3" width="26" height="20" rx="3"/><text x="246.7" y="171.3">나</text></g><g class="v-pin"><rect x="64.9" y="40.6" width="60" height="20" rx="3"/><text x="94.9" y="54.6" text-anchor="middle">벽 추가</text><path d="M94.9 60.6V71.6"/><circle cx="94.9" cy="74.6" r="4"/></g></svg>
+        </div>
+        <div class="tile-cap"><b>Caldera</b><span>레벨 설계 편집기</span><i class="tag">도식</i></div>
+      </a>
+      <a class="tile" href="#perfecther">
+        <div class="tile-media" data-media="media/perfecther-title.png" data-mode="swap" data-alt="PerfectHer 타이틀 화면">
+          <svg viewBox="0 0 360 202" role="img" aria-label="사건 JSON 하나를 사람은 노드 편집기로, 에이전트는 CLI로 고치고, 저장하면 웹 시안과 Unity 사본이 함께 만들어진다">
+            <path class="d-arrow" d="M122 62 L146 88 M122 140 L146 114 M214 88 L238 62 M214 114 L238 140"/>
+            <rect class="d-box" x="14" y="40" width="108" height="44" rx="4"/>
+            <rect class="d-me" x="24" y="50" width="8" height="8" rx="2"/><text class="d-s" x="38" y="58">나</text>
+            <text class="d-t" x="24" y="75">노드 편집기</text>
+            <rect class="d-box" x="14" y="118" width="108" height="44" rx="4"/>
+            <rect class="d-ai" x="24" y="128" width="8" height="8" rx="2"/><text class="d-s" x="38" y="136">에이전트</text>
+            <text class="d-t" x="24" y="153">CLI</text>
+            <rect class="d-file" x="146" y="72" width="68" height="58" rx="4"/>
+            <text class="d-t" x="180" y="98" text-anchor="middle">사건</text>
+            <text class="d-s" x="180" y="115" text-anchor="middle">JSON 하나</text>
+            <rect class="d-box" x="238" y="40" width="108" height="44" rx="4"/>
+            <text class="d-s" x="248" y="58">사본</text><text class="d-t" x="248" y="75">웹 시안</text>
+            <rect class="d-box" x="238" y="118" width="108" height="44" rx="4"/>
+            <text class="d-s" x="248" y="136">사본</text><text class="d-t" x="248" y="153">Unity</text>
+          </svg>
+        </div>
+        <div class="tile-cap"><b>PerfectHer</b><span>사건 데이터 편집 시스템</span><i class="tag">도식</i></div>
+      </a>
+      <a class="tile" href="#beyond">
+        <div class="tile-media"><img src="media/beyond-inspector-after.png" alt="화면 건너편의 너 미션 커스텀 인스펙터" style="object-position: left top"></div>
+        <div class="tile-cap"><b>화면 건너편의 너</b><span>미션 커스텀 인스펙터</span></div>
+      </a>
+      <a class="tile" href="#greenclean">
+        <div class="tile-media"><video class="auto" muted loop playsinline preload="metadata" poster="media/greenclean-play.jpg" src="media/greenclean-reaction.mp4" aria-label="GreenClean 3콤보 마스코트 반응"></video></div>
+        <div class="tile-cap"><b>GreenClean</b><span>조건 조합으로 만든 마스코트 반응</span></div>
+      </a>
+      <a class="tile" href="#mixterpiece">
+        <div class="tile-media"><img src="media/mixterpiece-wall-stage.jpg" alt="MixterPiece 벽 스테이지 플레이 화면"></div>
+        <div class="tile-cap"><b>MixterPiece</b><span>벽 시스템과 벽 에디터</span></div>
+      </a>
+      <a class="tile" href="#nostalgia">
+        <div class="tile-media"><img src="media/nostalgia-keyart.jpg" alt="Nostalgia 대표 이미지"></div>
+        <div class="tile-cap"><b>Nostalgia</b><span>Steam 출시 협동 호러</span></div>
+      </a>
+    </div>
   </div>
 </header>
 
-<section class="about" id="about">
-  <div class="col">
-    <h3>소개</h3>
-    <dl class="fields">
-      <dt>학력</dt><dd>동국대학교 멀티미디어공학과 (2019.02 – 2025.02)</dd>
-      <dt>교육</dt><dd>네오위즈 Advanced K-Game Academy 7기 (2026.02 – 2026.10)</dd>
-      <dt>출시</dt><dd>Nostalgia, Steam (2025.07)</dd>
-      <dt>출품</dt><dd>MixterPiece, AI 활용 게임 개발 대회 (2026.08)</dd>
-      <dt>기술</dt><dd>Unity, C#, Photon Fusion, Vivox, Naninovel, React, TypeScript, Three.js</dd>
-      <dt>AI 도구</dt><dd>Claude Code, Codex, OpenCode, Herdr, Blender MCP, ComfyUI</dd>
+<section class="about" id="about" aria-label="소개">
+  <div class="wrap">
+    <dl class="facts">
+      <div><dt>학력</dt><dd>동국대학교 멀티미디어공학과 (2019.02 – 2025.02)</dd></div>
+      <div><dt>교육</dt><dd>네오위즈 Advanced K-Game Academy 7기 (2026.02 – 2026.10)</dd></div>
+      <div><dt>출시 · 출품</dt><dd>Nostalgia, Steam (2025.07)<br>MixterPiece, AI 활용 게임 개발 대회 (2026.08)</dd></div>
+      <div><dt>기술</dt><dd>Unity, C#, Photon Fusion, Vivox, Naninovel, React, TypeScript, Three.js</dd></div>
+      <div><dt>AI 도구</dt><dd>Claude Code, Codex, OpenCode, Herdr, Blender MCP, ComfyUI</dd></div>
+      <div><dt>연락처</dt><dd><a href="mailto:bjpowerll12967@gmail.com">bjpowerll12967@gmail.com</a><br><a href="https://github.com/chaaaron000">github.com/chaaaron000</a></dd></div>
     </dl>
   </div>
 </section>
 
 <!-- AI 작업 환경 -->
 <section class="project" id="workflow">
-  <div class="col">
-    <h2>AI 작업 환경</h2>
-    <p class="what">여러 AI를 역할별로 나눠 씁니다. 아래 프로젝트들은 모두 이 방식으로 만들고 있습니다.</p>
+  <div class="wrap">
+    <header class="p-head reveal">
+      <div class="p-title"><p class="p-kicker"><span class="num">01 / 07</span></p><h2>AI 작업 환경</h2></div>
+      <div class="p-sum">
+        <p class="p-what"><b>여러 AI를 역할별로 나눠 쓰는 방식.</b> 개발 중인 세 프로젝트가 모두 이 위에서 돌아갑니다.</p>
+        <p>터미널 작업 공간 Herdr에 Claude Code, Codex 같은 AI 도구를 여러 개 띄우고, 직접 만든 플러그인 herdr-loadout 프로필로 역할별 모델과 추론 강도를 정합니다.</p>
+      </div>
+    </header>
 
-    <ol class="steps">
-      <li><b>판단 기준을 먼저 적습니다.</b> 저장소마다 <code>AGENTS.md</code>에 우선순위(내 요청, 정리 문서, 원천 자료, 코드, AI 추론 순)와 프로젝트 규칙을 둡니다.</li>
-      <li><b>근거와 정리를 나눕니다.</b> 결정 기록과 자료는 <code>raw</code>에, 정리본은 <code>wiki</code>에 두어 AI가 근거를 찾아 씁니다.</li>
-      <li><b>대화와 작업을 나눕니다.</b> 저와 대화하는 오케스트레이터는 일을 쪼개 브리프를 쓰고, 구현과 검수는 새 워커가 맡습니다. 브리프에는 목표, 범위, 정한 결정, 완료 기준, 보고 파일 경로를 담습니다.</li>
-      <li><b>보고를 믿지 않고 확인합니다.</b> 문법 검사기, 테스트, 실제 플레이 결과로 끝을 판단합니다.</li>
-      <li><b>겪은 것을 남깁니다.</b> 제 피드백과 함정은 메모 파일에 쌓아 다음 작업이 같은 실수를 하지 않게 합니다.</li>
+    <ol class="steps reveal" aria-label="작업 순서">
+      <li><b>판단 기준</b><span><code>AGENTS.md</code>에 우선순위(내 요청, 정리 문서, 원천 자료, 코드, AI 추론 순)와 프로젝트 규칙</span></li>
+      <li><b>근거와 정리</b><span>결정 기록과 자료는 <code>raw</code>, 정리본은 <code>wiki</code>. AI가 근거를 찾아 씁니다</span></li>
+      <li><b>브리프와 워커</b><span>오케스트레이터는 일을 쪼개 브리프만 쓰고, 구현과 검수는 새 워커가 맡습니다</span></li>
+      <li><b>확인</b><span>완료 보고를 믿지 않고 문법 검사기, 테스트, 실제 플레이 결과로 판단</span></li>
+      <li><b>기록</b><span>피드백과 겪은 함정을 메모 파일에 쌓아 같은 실수를 막습니다</span></li>
     </ol>
+    <p class="flow-note">브리프에는 목표, 범위, 정한 결정, 완료 기준, 보고 파일 경로를 담습니다.</p>
 
-    <div class="tools">
-      <div class="component">
-        <header>herdr-loadout</header>
-        <div><p>어떤 역할에 어떤 도구, 모델, 추론 강도를 쓸지 프로필로 등록해 두는 Herdr 플러그인입니다. 오케스트레이터가 적은 컨텍스트로 조회해 워커를 띄웁니다.</p></div>
+    <article class="case">
+      <h3>직접 만든 도구 <span>이 방식을 받치는 세 가지</span></h3>
+      <div class="tools">
+        <div>
+          <b>herdr-loadout</b>
+          <p>역할마다 쓸 도구, 모델, 추론 강도를 프로필로 등록하는 Herdr 플러그인. 오케스트레이터가 적은 컨텍스트로 조회해 워커를 띄웁니다.</p>
+          <p><a href="https://github.com/chaaaron000/herdr-loadout">저장소 보기</a></p>
+        </div>
+        <div>
+          <b>floorplan-to-game-level</b>
+          <p>에이전트가 건축 평면도를 직접 읽고 재서 IFC와 게임용 FBX로 만들고, 비매니폴드, z-fighting, 캡슐 도달 가능성까지 검사하는 스킬 모음.</p>
+          <p><a href="https://github.com/chaaaron000/floorplan-to-game-level">저장소 보기</a></p>
+        </div>
+        <div>
+          <b>Naninovel 문법 검사기</b>
+          <p>Naninovel 공식 언어 서버를 꺼내 저장소에서 직접 구동합니다. 에이전트가 시나리오를 고치면 문법 진단을 통과해야 다음 단계로 넘어갑니다.</p>
+        </div>
       </div>
-      <div class="component">
-        <header>floorplan-to-game-level</header>
-        <div><p>건축 평면도를 에이전트가 직접 읽고 재서 IFC와 게임용 FBX로 만들고, 비매니폴드, z-fighting, 캡슐 도달 가능성까지 검사하는 스킬 모음입니다.</p><p><a href="https://github.com/chaaaron000/floorplan-to-game-level">저장소 보기</a></p></div>
-      </div>
-      <div class="component">
-        <header>Naninovel 문법 검사기</header>
-        <div><p>Naninovel 공식 언어 서버를 꺼내 저장소에서 직접 구동합니다. 에이전트가 시나리오를 고치면 문법 진단을 통과해야 다음 단계로 넘어갑니다.</p></div>
+    </article>
+
+    <div class="roles-wrap">
+      <p class="label">역할 구분</p>
+      <div class="roles">
+        <div class="role me"><h4>제가 정한 것</h4><ul><li>판단 우선순위와 프로젝트 규칙</li><li>역할별 도구, 모델, 추론 강도</li><li>끝났다는 판단. 검사기, 테스트, 실제 플레이로 확인</li></ul></div>
+        <div class="role ai"><h4>AI에게 맡긴 것</h4><ul><li>오케스트레이터: 작업 분해와 브리프 작성</li><li>워커: 구현과 검수</li><li>raw와 wiki에서 근거 찾기</li></ul></div>
       </div>
     </div>
   </div>
@@ -286,42 +497,76 @@
 
 <!-- Caldera -->
 <section class="project" id="caldera">
-  <div class="col">
-    <span class="status">개발 중</span>
-    <h2>Caldera</h2>
-    <p class="what">평면도에서 걸어 들어갈 수 있는 레벨까지. 인디 규모로 어디까지 손을 뻗을 수 있는지 확인하는 협동 생존 게임입니다.</p>
-    <dl class="fields">
-      <dt>인원</dt><dd>1명 (AI 에이전트와 함께)</dd>
-      <dt>기술</dt><dd>Unity, FishNet, Steam Audio, Node, Three.js, Blender</dd>
-    </dl>
-
-    <figure>
-      <div class="media" data-media="media/caldera-editor.mp4" data-alt="Caldera 레벨 설계 편집기: 2D 편집에서 3D 탑뷰, 1인칭으로 전환">
-        녹화 예정: 2D로 벽을 고치고, 탑뷰로, 1인칭으로 걸어 들어가는 장면
-        <code>media/caldera-editor.mp4</code>
+  <div class="wrap">
+    <header class="p-head reveal">
+      <div class="p-title"><p class="p-kicker"><span class="num">02 / 07</span><span class="status">개발 중</span></p><h2>Caldera</h2></div>
+      <div class="p-sum">
+        <p class="p-what"><b>협동 생존 게임.</b> 평면도에서 걸어 들어갈 수 있는 레벨까지, 인디 규모로 어디까지 손을 뻗을 수 있는지 확인합니다.</p>
+        <dl class="p-meta">
+          <div><dt>인원</dt><dd>1명 (AI 에이전트와 함께)</dd></div>
+          <div><dt>기술</dt><dd>Unity, FishNet, Steam Audio, Node, Three.js, Blender</dd></div>
+        </dl>
       </div>
+    </header>
+
+    <!-- media/caldera-editor.mp4 를 넣으면 이 자리에 나타난다 -->
+    <figure class="stage reveal-media" data-media="media/caldera-editor.mp4" data-alt="Caldera 레벨 설계 편집기: 2D 편집에서 3D 탑뷰, 1인칭으로 전환" hidden style="margin-bottom:24px">
       <figcaption>고친 도면이 3D와 1인칭 화면에 바로 반영됩니다.</figcaption>
     </figure>
 
-    <h3>레벨 설계 편집기</h3>
-    <p>한 층 평면도를 구조 데이터(JSON)로 두고 브라우저에서 벽, 문, 방을 편집합니다. 방과 면적은 편집할 때마다 다시 계산하고, 검사 결과를 화면에 핀으로 띄웁니다. 키 하나로 2D, 3D 탑뷰, 1인칭 사이를 오갑니다.</p>
-    <ul class="points">
-      <li><b>사람과 에이전트가 같은 도면을 함께 고칩니다.</b> 서버가 연 도면을 실시간 세션으로 쥐고, 브라우저 탭과 MCP로 붙은 에이전트가 같은 세션을 편집합니다. 고칠 곳은 도면 위 메모 핀으로 알려 줍니다.</li>
-      <li><b>평면도를 에이전트가 직접 읽고 잽니다.</b> <a href="https://github.com/chaaaron000/floorplan-to-game-level">floorplan-to-game-level</a>로 도면 이미지와 PDF를 추적해 편집기로 가져오고, 게임용 FBX로 내보내 검수합니다.</li>
-      <li>빌드 단계와 npm 의존성 없이 Node 22 하나로 돌아갑니다.</li>
-    </ul>
+    <figure class="views reveal-media" id="caldera-views">
+      <div class="views-grid">
+        <div class="view"><svg viewBox="0 0 360 270" role="img" aria-label="2D 도면: 에이전트가 거실에 벽을 그리고 있다"><g class="v-grid"><path d="M30 22.5V247.5"/><path d="M60 22.5V247.5"/><path d="M90 22.5V247.5"/><path d="M120 22.5V247.5"/><path d="M150 22.5V247.5"/><path d="M180 22.5V247.5"/><path d="M210 22.5V247.5"/><path d="M240 22.5V247.5"/><path d="M270 22.5V247.5"/><path d="M300 22.5V247.5"/><path d="M330 22.5V247.5"/><path d="M30 22.5H330"/><path d="M30 67.5H330"/><path d="M30 112.5H330"/><path d="M30 157.5H330"/><path d="M30 202.5H330"/><path d="M30 247.5H330"/></g><g class="v-wall"><path d="M30 22.5L330 22.5"/><path d="M330 22.5L330 247.5"/><path d="M330 247.5L30 247.5"/><path d="M30 247.5L30 22.5"/><path d="M195 22.5L195 157.5"/><path d="M195 187.5L195 247.5"/><path d="M195 127.5L255 127.5"/><path d="M285 127.5L330 127.5"/></g><path class="v-door" d="M195 157.5A30 30 0 0 1 225 187.5"/><path class="v-door" d="M255 127.5A30 30 0 0 0 285 97.5"/><text class="v-room" x="43.5" y="213">거실<tspan class="v-area" x="43.5" dy="15">41.3㎡</tspan></text><text class="v-room" x="210" y="67.5">침실<tspan class="v-area" x="210" dy="15">15.8㎡</tspan></text><text class="v-room" x="270" y="159">주방<tspan class="v-area" x="270" dy="15">18.0㎡</tspan></text><path class="v-new" style="--len:142.5" d="M112.5 22.5L112.5 165"/><g class="v-cur-ai"><path d="M112.5 165l0 20 5.5-5.5 7 12 3.6-1.8-7-12 8-1Z"/><rect x="128.5" y="181" width="92" height="20" rx="3"/><text x="135.5" y="195">에이전트 (MCP)</text></g><g class="v-cur-me"><path d="M237 187.5l0 20 5.5-5.5 7 12 3.6-1.8-7-12 8-1Z"/><rect x="253" y="203.5" width="26" height="20" rx="3"/><text x="260" y="217.5">나</text></g><g class="v-pin"><rect x="39" y="66.5" width="60" height="20" rx="3"/><text x="69" y="80.5" text-anchor="middle">벽 추가</text><path d="M69 86.5V97.5"/><circle cx="69" cy="100.5" r="4"/></g></svg><p><b>2D 편집</b> 메모 핀을 남기면 에이전트가 벽을 그립니다</p></div>
+        <div class="view"><svg viewBox="0 0 360 270" role="img" aria-label="3D 탑뷰: 같은 도면이 벽 높이를 가진 입체로 보인다"><polygon class="v-floor" points="117.6,39 325.1,132.6 242.4,264.6 34.9,171"/><g class="v-grid"><path d="M138.4 48.4L55.6 180.4"/><path d="M159.1 57.8L76.4 189.7"/><path d="M179.9 67.1L97.1 199.1"/><path d="M200.6 76.5L117.9 208.4"/><path d="M221.4 85.8L138.6 217.8"/><path d="M242.1 95.2L159.4 227.2"/><path d="M262.9 104.5L180.1 236.5"/><path d="M283.6 113.9L200.9 245.9"/><path d="M304.4 123.2L221.6 255.2"/><path d="M101.1 65.4L308.6 159"/><path d="M84.5 91.8L292 185.4"/><path d="M68 118.2L275.5 211.8"/><path d="M51.4 144.6L258.9 238.2"/></g><g><polygon class="v-side-a" points="328,131.9 326,135 326,101.4 328,98.2"/><polygon class="v-side-b" points="326,135 114.8,39.8 114.8,6.2 326,101.4"/><polygon class="v-top" points="116.8,3 328,98.2 326,101.4 114.8,6.2"/></g><g><polygon class="v-side-a" points="120.5,38.3 35.8,173.4 35.8,139.8 120.5,4.7"/><polygon class="v-side-b" points="35.8,173.4 32,171.8 32,138.1 35.8,139.8"/><polygon class="v-top" points="116.8,3 120.5,4.7 35.8,139.8 32,138.1"/></g><g class="v-newbox"><polygon class="v-side-a" points="177.5,64 123.2,150.8 123.2,117.2 177.5,30.4"/><polygon class="v-side-b" points="123.2,150.8 119.4,149.1 119.4,115.5 123.2,117.2"/><polygon class="v-top" points="173.8,28.7 177.5,30.4 123.2,117.2 119.4,115.5"/></g><g><polygon class="v-side-a" points="234.6,89.8 183,172.1 183,138.5 234.6,56.1"/><polygon class="v-side-b" points="183,172.1 179.2,170.4 179.2,136.8 183,138.5"/><polygon class="v-top" points="230.9,54.5 234.6,56.1 183,138.5 179.2,136.8"/></g><g><polygon class="v-side-a" points="237.5,170.1 235.5,173.2 235.5,139.6 237.5,136.4"/><polygon class="v-side-b" points="235.5,173.2 190.3,152.8 190.3,119.2 235.5,139.6"/><polygon class="v-top" points="192.3,116 237.5,136.4 235.5,139.6 190.3,119.2"/></g><g><polygon class="v-side-a" points="289.4,193.5 287.4,196.6 287.4,163 289.4,159.8"/><polygon class="v-side-b" points="287.4,196.6 252.5,180.9 252.5,147.3 287.4,163"/><polygon class="v-top" points="254.5,144.1 289.4,159.8 287.4,163 252.5,147.3"/></g><g><polygon class="v-side-a" points="328,131.9 243.2,267 243.2,233.4 328,98.2"/><polygon class="v-side-b" points="243.2,267 239.5,265.3 239.5,231.7 243.2,233.4"/><polygon class="v-top" points="324.2,96.6 328,98.2 243.2,233.4 239.5,231.7"/></g><g><polygon class="v-side-a" points="173.9,186.5 149.9,224.9 149.9,191.3 173.9,152.9"/><polygon class="v-side-b" points="149.9,224.9 146.1,223.2 146.1,189.6 149.9,191.3"/><polygon class="v-top" points="170.2,151.2 173.9,152.9 149.9,191.3 146.1,189.6"/></g><g><polygon class="v-side-a" points="245.2,263.8 243.2,267 243.2,233.4 245.2,230.2"/><polygon class="v-side-b" points="243.2,267 32,171.8 32,138.1 243.2,233.4"/><polygon class="v-top" points="34,135 245.2,230.2 243.2,233.4 32,138.1"/></g></svg><p><kbd>T</kbd><b>3D 탑뷰</b> 고친 도면이 바로 입체로</p></div>
+        <div class="view"><svg viewBox="0 0 360 270" role="img" aria-label="1인칭: 같은 도면 안을 걸어 다니며 새 벽을 본다"><rect class="v-ceil" x="0" y="0" width="360" height="143"/><rect class="v-floor" x="0" y="143" width="360" height="127"/><g class="v-grid"><path d="M-93.3 219.4L-613.6 2716.7"/><path d="M-24.2 206.8L679.6 1051.4"/><path d="M25.3 197.8L430.6 413.9"/><path d="M62.5 191L387 302.2"/><path d="M91.5 185.7L368.8 255.7"/><path d="M114.7 181.4L358.8 230.2"/><path d="M133.7 177.9L352.6 214.2"/><path d="M149.6 175L348.2 203.1"/><path d="M163 172.6L345.1 195"/><path d="M174.5 170.5L342.7 188.8"/><path d="M-144.8 235.5L186.5 170.2"/><path d="M-159.6 255.7L201.2 171.8"/><path d="M-182.6 287.3L217.7 173.5"/><path d="M-223.6 343.5L236.2 175.4"/><path d="M-316.9 471.6L257.3 177.5"/><path d="M-739.7 1051.4L281.4 180"/><path d="M-680.6 2716.7L309.2 182.9"/></g><polygon class="v-side-a" points="345.1,187 177.6,169.6 177.6,124.7 345.1,112.7"/><polygon class="v-side-b" points="238.7,175.3 224.6,180.6 224.6,117.2 238.7,120.8"/><polygon class="v-side-a" points="224.6,180.6 220.7,180.1 220.7,117.5 224.6,117.2"/><polygon class="v-side-b" points="181.8,169.5 -149.7,230.9 -149.7,82.6 181.8,124.8"/><polygon class="v-side-b" points="215.9,183.9 183.3,196.1 183.3,106.5 215.9,114.9"/><polygon class="v-side-a" points="213.2,202.2 111.5,181.5 111.5,116.5 213.2,102.3"/><polygon class="v-side-a" points="183.3,196.1 178.5,195.2 178.5,107.1 183.3,106.5"/><polygon class="v-side-b" points="216.2,200.6 213.2,202.2 213.2,102.3 216.2,103.4"/><polygon class="v-side-a v-newface" points="142.8,250.8 30.9,196 30.9,106.5 142.8,68.9"/><polygon class="v-side-a" points="366.5,233.5 243.5,208.4 243.5,98 366.5,80.8"/><polygon class="v-side-b" points="1149.2,2716.7 338.4,185.5 338.4,113.8 1149.2,-1626.4"/><polygon class="v-side-a" points="-129.5,225 -1712.7,2716.7 -1712.7,-1626.4 -129.5,86.6"/><polygon class="v-side-b v-newface" points="151.5,245.7 142.8,250.8 142.8,68.9 151.5,72.4"/><path class="v-cross" d="M174 143H186M180 137V149"/></svg><p><kbd>Tab</kbd><b>1인칭</b> 그 안을 걸어 들어갑니다</p></div>
+      </div>
+      <figcaption><b>같은 도면 데이터, 세 가지 보기.</b> 편집기가 일하는 방식을 그린 도식</figcaption>
+    </figure>
 
-    <div class="roles">
-      <div class="human"><h4>제가 정한 것</h4><ul><li>도면 데이터 구조와 편집 규칙</li><li>사람과 에이전트가 한 세션을 공유하는 구조</li><li>검사 항목과 레벨 수치 기준</li></ul></div>
-      <div class="ai"><h4>AI에게 맡긴 것</h4><ul><li>편집기 구현과 3D, 1인칭 뷰어</li><li>평면도 추적과 배치 초안</li><li>FBX 내보내기 검수 스크립트 실행</li></ul></div>
-    </div>
+    <article class="case">
+      <h3>레벨 설계 편집기 <span>브라우저에서 벽, 문, 방을 편집</span></h3>
+      <div class="split even">
+        <div class="txt">
+          <ul>
+            <li>한 층 평면도를 구조 데이터(JSON)로 둡니다.</li>
+            <li>방과 면적은 편집할 때마다 다시 계산하고, 검사 결과를 화면에 핀으로 띄웁니다.</li>
+            <li>키 하나로 2D, 3D 탑뷰, 1인칭 사이를 오갑니다.</li>
+            <li>빌드 단계와 npm 의존성 없이 Node 22 하나로 돌아갑니다.</li>
+          </ul>
+        </div>
+        <div class="txt">
+          <p><b>사람과 에이전트가 같은 도면을 고칩니다.</b> 서버가 연 도면을 실시간 세션으로 쥐고, 브라우저 탭과 MCP로 붙은 에이전트가 같은 세션을 편집합니다. 고칠 곳은 도면 위 메모 핀으로 알려 줍니다.</p>
+        </div>
+      </div>
+    </article>
 
-    <h3>본 개발 전 기술 검증</h3>
-    <p>위험한 기술 요소를 실제 레벨(문 159개, 5개 층)에서 먼저 확인했습니다.</p>
-    <div class="stats">
-      <div><b>판정 일치 100%</b><span>지연 보상을 직접 구현. 왕복 250ms와 손실 5%에서 명중과 부위 판정</span></div>
-      <div><b>방 172, 통로 181</b><span>음향 그래프로 총성 전파, Steam Audio로 문 차폐</span></div>
-      <div><b>전용 서버</b><span>FishNet 멀티플레이, 근접 음성과 무전기, Linux 서버 저장과 재시작</span></div>
+    <article class="case">
+      <h3>평면도에서 레벨까지 <span>에이전트가 도면을 직접 읽고 잽니다</span></h3>
+      <ol class="flow" aria-label="평면도에서 레벨까지">
+        <li><b>평면도 이미지, PDF</b></li>
+        <li class="ai"><small>에이전트</small><b>도면 추적</b></li>
+        <li class="me"><small>나</small><b>편집기에서 수정</b></li>
+        <li class="ai"><small>에이전트</small><b>게임용 FBX 내보내기</b></li>
+        <li><b>걸어 다닐 수 있는 레벨</b></li>
+      </ol>
+      <p class="flow-note">에이전트가 <a href="https://github.com/chaaaron000/floorplan-to-game-level">floorplan-to-game-level</a> 스킬로 도면을 추적합니다. 저는 편집기에서 메모 핀으로 고칠 곳을 지시하고 에이전트가 반영합니다. 에이전트가 게임용 FBX로 내보낸 뒤 검수 스크립트를 실행합니다.</p>
+    </article>
+
+    <article class="case">
+      <h3>기술 검증 <span>본 개발 전에 위험한 요소를 실제 레벨에서 확인</span></h3>
+      <div class="stats">
+        <div><b>100<i>%</i></b><strong>지연 보상 판정 일치</strong><span>직접 구현. 왕복 250ms, 손실 5%에서 명중과 부위 판정</span></div>
+        <div><b>172<i>방</i> 181<i>통로</i></b><strong>음향 그래프</strong><span>총성 전파를 그래프로 계산, Steam Audio로 문 차폐</span></div>
+        <div><b>159<i>문</i> 5<i>층</i></b><strong>검증에 쓴 레벨</strong><span>FishNet 전용 서버, 근접 음성과 무전기, Linux 서버 저장과 재시작</span></div>
+      </div>
+    </article>
+
+    <div class="roles-wrap">
+      <p class="label">역할 구분</p>
+      <div class="roles">
+        <div class="role me"><h4>제가 정한 것</h4><ul><li>도면 데이터 구조와 편집 규칙</li><li>사람과 에이전트가 한 세션을 공유하는 구조</li><li>검사 항목과 레벨 수치 기준</li></ul></div>
+        <div class="role ai"><h4>AI에게 맡긴 것</h4><ul><li>편집기 구현과 3D, 1인칭 뷰어</li><li>평면도 추적과 배치 초안</li><li>FBX 내보내기 검수 스크립트 실행</li></ul></div>
+      </div>
     </div>
     <div class="links"><span class="private">저장소는 비공개입니다.</span></div>
   </div>
@@ -329,58 +574,88 @@
 
 <!-- PerfectHer -->
 <section class="project" id="perfecther">
-  <div class="col">
-    <span class="status">개발 중</span>
-    <h2>PerfectHer</h2>
-    <p class="what">혼자서 기획, 개발, 아트까지 돌리는 파이프라인으로 만드는 심리적 공포 비주얼 노벨입니다.</p>
-    <dl class="fields">
-      <dt>인원</dt><dd>1명 (AI 에이전트와 함께)</dd>
-      <dt>기술</dt><dd>Unity, Naninovel, Python, Blender MCP, ComfyUI</dd>
-    </dl>
-
-    <h3>사건 데이터 편집 시스템</h3>
-    <figure>
-      <div class="media" data-media="media/perfecther-case-editor.mp4" data-alt="PerfectHer 사건 편집기">
-        녹화 예정: 사건 편집기에서 노드를 고치면 웹 시안에 반영되는 장면
-        <code>media/perfecther-case-editor.mp4</code>
+  <div class="wrap">
+    <header class="p-head reveal">
+      <div class="p-title"><p class="p-kicker"><span class="num">03 / 07</span><span class="status">개발 중</span></p><h2>PerfectHer</h2></div>
+      <div class="p-sum">
+        <p class="p-what"><b>심리적 공포 비주얼 노벨.</b> 프로토타입과 아트 시안은 AI와 함께 Blender, ComfyUI로 뽑고, 캐릭터는 아트 팀원이 그립니다.</p>
+        <dl class="p-meta">
+          <div><dt>인원</dt><dd>2명 (개발 1, 아트 1)</dd></div>
+          <div><dt>기술</dt><dd>Unity, Naninovel, Python, Blender MCP, ComfyUI</dd></div>
+        </dl>
       </div>
-      <figcaption>사건 하나가 JSON 하나입니다. 사람은 노드 편집기로, 에이전트는 CLI로 같은 파일을 고칩니다.</figcaption>
-    </figure>
-    <ul class="points">
-      <li><b>사람용 편집기와 에이전트용 CLI가 같은 저장 경로를 씁니다.</b> 사건마다 쓰기 잠금을 잡고, 읽은 판(해시)과 지금 파일을 견줘 그 사이 바뀌었으면 쓰지 않습니다.</li>
-      <li><b>원본 하나에서 사본을 한 묶음으로 만듭니다.</b> 저장할 때마다 웹 시안용 사본과 Unity용 사본을 함께 써서, 시안에서 확인한 사건이 그대로 게임에 들어갑니다.</li>
-      <li><b>git에서 고친 줄만 보이도록</b> 키 순서와 줄 바꿈 규칙을 고정했습니다.</li>
-    </ul>
+    </header>
 
-    <h3>코드 리뷰 대신 QA 플레이</h3>
-    <p>다른 모델에게 코드 리뷰를 맡겨 봤지만 실제 버그는 거의 잡지 못했습니다. 그래서 QA 전담 에이전트가 Unity Play 모드에서 직접 플레이하게 바꿨습니다. 정답 길과 오답 길을 끝까지 가 보고, 대사 중간 저장, 연타, 되감기 같은 엇나간 조작을 해 본 뒤 버그를 심각도별로 보고합니다. 잡은 버그는 재현 절차를 회귀 스크립트로 남깁니다.</p>
-    <div class="stats">
-      <div><b>회귀 27개 경로</b><span>대사 순서, 끝 상태, 저장 후 불러오기, 콘솔 오류를 매번 비교</span></div>
-      <div><b>QA 왕복 최대 3번</b><span>그 뒤에도 남은 문제는 제가 판단</span></div>
-      <div><b>GPU 큐</b><span>GPU 하나를 ComfyUI 생성과 Blender 렌더가 줄 서서 나눠 씀</span></div>
-    </div>
-
-    <h3>AI 아트 파이프라인</h3>
-    <div class="pair">
-      <figure>
-        <div class="media" data-media="media/perfecther-3d-background.png" data-alt="Blender MCP로 만든 은신처 3D 배경">
-          이미지 예정: 은신처 3D 배경
-          <code>media/perfecther-3d-background.png</code>
-        </div>
-        <figcaption>에이전트가 Blender MCP로 배경을 모델링하고 카메라 구도를 맞춥니다.</figcaption>
+    <article class="case first">
+      <h3>사건 데이터 편집 시스템 <span>사건 하나가 JSON 하나</span></h3>
+      <!-- media/perfecther-case-editor.mp4 를 넣으면 이 자리에 나타난다 -->
+      <figure class="stage reveal-media" data-media="media/perfecther-case-editor.mp4" data-alt="PerfectHer 사건 편집기에서 노드를 고치면 웹 시안에 반영되는 장면" hidden style="margin-bottom:24px">
+        <figcaption>사건 편집기에서 노드를 고치면 웹 시안에 반영됩니다.</figcaption>
       </figure>
-      <figure>
-        <div class="media" data-media="media/perfecther-title.png" data-alt="3D 배경과 캐릭터를 합성한 타이틀 화면">
-          이미지 예정: 합성한 타이틀
-          <code>media/perfecther-title.png</code>
+      <div class="stack">
+        <ol class="flow reveal-media" aria-label="사건 데이터가 저장되는 길">
+          <li class="group">
+            <div class="node me"><small>나</small><b>노드 편집기</b></div>
+            <div class="node ai"><small>에이전트</small><b>CLI</b></div>
+          </li>
+          <li><b>같은 저장 경로</b></li>
+          <li><b>사건 JSON</b></li>
+          <li><b>웹 시안, Unity 사본</b></li>
+        </ol>
+        <div class="txt" style="max-width:46em">
+          <ul>
+            <li><b>사람용 편집기와 에이전트용 CLI가 같은 저장 경로를 씁니다.</b> 사건마다 쓰기 잠금을 잡고, 읽은 판(해시)과 지금 파일을 견줍니다. 읽은 뒤 파일이 바뀌었으면 쓰지 않습니다.</li>
+            <li><b>시안에서 확인한 사건이 그대로 게임에 들어갑니다.</b> 저장할 때마다 웹 시안용 사본과 Unity용 사본을 한 번에 씁니다.</li>
+            <li><b>git에서 고친 줄만 보입니다.</b> 사건 JSON의 키 순서와 줄 바꿈 규칙을 고정했습니다.</li>
+          </ul>
         </div>
-        <figcaption>ComfyUI로 캐릭터 시안을 뽑아 합성하고, 검수 에이전트가 확대해 확인합니다.</figcaption>
-      </figure>
-    </div>
+      </div>
+    </article>
 
-    <div class="roles">
-      <div class="human"><h4>제가 정한 것</h4><ul><li>사건 데이터 꼴과 저장 규칙</li><li>QA 흐름과 버그 심각도 기준</li><li>아트 방향, 시안 선택과 반려</li></ul></div>
-      <div class="ai"><h4>AI에게 맡긴 것</h4><ul><li>편집기, CLI, Unity 기능 구현</li><li>QA 플레이와 회귀 스크립트 작성</li><li>3D 배경, 이미지 생성과 1차 검수</li></ul></div>
+    <article class="case">
+      <h3>QA 플레이 <span>코드 리뷰를 대체한 검증</span></h3>
+      <div class="stack">
+        <p style="max-width:44em">다른 모델에게 코드 리뷰를 맡겨 봤지만 실제 버그는 거의 잡지 못했습니다. QA 전담 에이전트가 Unity Play 모드에서 직접 플레이하도록 바꿨습니다.</p>
+        <ol class="steps" aria-label="QA 순서">
+          <li><b><i class="dot ai"></i>구현 에이전트</b><span>기능을 구현합니다.</span></li>
+          <li><b><i class="dot ai"></i>QA 에이전트</b><span>정답 길과 오답 길을 끝까지 직접 플레이합니다. 대사 중간 저장, 연타, 되감기도 해 봅니다.</span></li>
+          <li><b><i class="dot ai"></i>QA 에이전트</b><span>버그를 심각도별로 정리해 보고하고, 구현 에이전트가 수정합니다.</span></li>
+          <li><b><i class="dot ai"></i>QA 에이전트</b><span>잡은 버그의 재현 절차를 회귀 스크립트로 남깁니다.</span></li>
+          <li><b><i class="dot me"></i>나</b><span>QA 왕복 상한은 3번입니다. 그 뒤에도 남은 문제는 제가 판단합니다.</span></li>
+        </ol>
+        <p class="fig"><b>27<i>개 경로</i></b><span><strong>회귀 테스트.</strong> 대사 순서, 끝 상태, 저장 후 불러오기, 콘솔 오류를 매번 비교합니다.</span></p>
+      </div>
+    </article>
+
+    <article class="case">
+      <h3>AI 시안 파이프라인 <span>프로토타입용 3D 배경과 캐릭터 시안</span></h3>
+      <div class="stack">
+        <p style="max-width:44em">최종 캐릭터는 아트 팀원이 그립니다. 여기서 뽑는 이미지는 프로토타입과 방향을 맞추기 위한 시안입니다.</p>
+        <ol class="steps" aria-label="시안 작업 순서">
+          <li><b><i class="dot ai"></i>3D 배경</b><span>에이전트가 Blender MCP로 모델링하고 카메라 구도를 잡습니다.</span></li>
+          <li><b><i class="dot ai"></i>캐릭터 시안</b><span>에이전트가 ComfyUI로 생성합니다.</span></li>
+          <li><b><i class="dot ai"></i>합성과 1차 검수</b><span>검수 에이전트가 확대해 확인합니다.</span></li>
+          <li><b><i class="dot me"></i>선택과 반려</b><span>프로토타입에 쓸지 제가 판단합니다.</span></li>
+        </ol>
+        <p style="max-width:44em"><b>GPU 큐.</b> GPU 하나를 ComfyUI 생성과 Blender 렌더가 줄 서서 나눠 씁니다.</p>
+        <!-- media/perfecther-3d-background.png, media/perfecther-title.png 를 넣으면 이 자리에 나타난다 -->
+        <div class="pair" data-slots hidden>
+          <figure class="shot" data-media="media/perfecther-3d-background.png" data-alt="Blender MCP로 만든 은신처 3D 배경" hidden>
+            <figcaption>에이전트가 Blender MCP로 모델링한 은신처 배경</figcaption>
+          </figure>
+          <figure class="shot" data-media="media/perfecther-title.png" data-alt="3D 배경과 캐릭터를 합성한 타이틀 화면" hidden>
+            <figcaption>3D 배경에 캐릭터 시안을 합성한 타이틀 시안</figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+
+    <div class="roles-wrap">
+      <p class="label">역할 구분</p>
+      <div class="roles">
+        <div class="role me"><h4>제가 정한 것</h4><ul><li>사건 데이터 꼴과 저장 규칙</li><li>QA 흐름과 버그 심각도 기준</li><li>프로토타입용 시안 선택과 반려</li></ul></div>
+        <div class="role ai"><h4>AI에게 맡긴 것</h4><ul><li>편집기, CLI, Unity 기능 구현</li><li>QA 플레이와 회귀 스크립트 작성</li><li>3D 배경, 캐릭터 시안 생성과 1차 검수</li></ul></div>
+      </div>
     </div>
     <div class="links"><span class="private">저장소는 비공개입니다.</span></div>
   </div>
@@ -388,100 +663,277 @@
 
 <!-- 화면 건너편의 너 -->
 <section class="project" id="beyond">
-  <div class="col">
-    <span class="status">개발 중</span>
-    <h2>화면 건너편의 너</h2>
-    <p class="what">조사, 보고서, 시간 관리가 결합된 비주얼 노벨. 처음으로 AI 중심으로 개발한 프로젝트입니다.</p>
-    <dl class="fields">
-      <dt>기간</dt><dd>2026.04 – 진행 중</dd>
-      <dt>인원</dt><dd>2명</dd>
-      <dt>기술</dt><dd>Unity, Naninovel, React, TypeScript, Penpot</dd>
-    </dl>
-
-    <h3>미션 데이터: 식별, 호출, 표시를 나누다</h3>
-    <p>이름을 바꿔도 참조가 풀리지 않는 구조가 목표였습니다. 처음엔 해시를 식별자로 쓰려 했는데, AI가 해시는 내용이 바뀌면 값도 바뀐다며 GUID를 제안했고, 근거가 타당해 받아들였습니다. 여기에 Naninovel이 부르는 <code>Name</code>과 사람이 읽는 <code>Title</code>을 더해 역할을 나눴습니다.</p>
-
-    <h3>미션 커스텀 인스펙터</h3>
-    <p>기본 인스펙터에서는 GUID가 그대로 보이고 모든 필드가 한 열로 늘어서 있었습니다. 원하는 화면을 직접 스케치해 Codex에 구현을 맡기고, 아쉬운 곳은 구체적으로, 좋은 곳은 이유까지 전하며 고쳐 나갔습니다. GUID를 복사하고 대상을 다시 찾던 작업이 사라졌습니다.</p>
-    <figure>
-      <div class="media" data-media="media/mission-editor.png" data-alt="기본 Debug 인스펙터와 미션 커스텀 인스펙터 비교">
-        이미지 예정: 기본 인스펙터와 미션 에디터 비교
-        <code>media/mission-editor.png</code>
+  <div class="wrap">
+    <header class="p-head reveal">
+      <div class="p-title"><p class="p-kicker"><span class="num">04 / 07</span><span class="status">개발 중</span></p><h2>화면 건너편의 너</h2></div>
+      <div class="p-sum">
+        <p class="p-what"><b>조사, 보고서, 시간 관리가 결합된 비주얼 노벨.</b> 처음으로 AI 중심으로 개발한 프로젝트입니다.</p>
+        <dl class="p-meta">
+          <div><dt>기간</dt><dd>2026.04 – 진행 중</dd></div>
+          <div><dt>인원</dt><dd>2명</dd></div>
+          <div><dt>기술</dt><dd>Unity, Naninovel, React, TypeScript, Penpot</dd></div>
+        </dl>
       </div>
+    </header>
+
+    <figure class="stage reveal-media">
+      <video class="auto" muted loop playsinline controls preload="none" poster="media/beyond-prototype-poster.jpg" src="media/beyond-prototype.mp4" aria-label="화면 건너편의 너 웹 프로토타입 플레이"></video>
+      <figcaption>웹 프로토타입 플레이. 대화에서 조사 계획, 결과, 제안으로 이어집니다.</figcaption>
     </figure>
 
-    <h3>Unity 전에 웹으로 먼저 검증</h3>
-    <p>보고서, 조사 계획, 시간, 결과, 제안이 한 흐름에 얽혀 있어, Unity UI로 바로 만들면 수정 비용이 컸습니다. Penpot으로 화면을 설계하고 React와 TypeScript 프로토타입, Vitest로 상태 로직부터 검증했습니다.</p>
+    <article class="case">
+      <h3>미션 커스텀 인스펙터 <span>GUID를 복사하고 대상을 다시 찾던 작업 제거</span></h3>
+      <div class="pair">
+        <figure class="shot">
+          <a href="media/beyond-inspector-before.png" target="_blank" rel="noopener" aria-label="원본 크기로 보기"><img src="media/beyond-inspector-before.png" alt="기본 Inspector Debug 모드: GUID가 그대로 보이고 모든 필드가 한 열로 늘어서 있다" loading="lazy" width="1038" height="508"></a>
+          <figcaption><b>Before</b> 기본 인스펙터. GUID가 그대로 보이고 모든 필드가 한 열로 늘어섭니다.</figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="media/beyond-inspector-after.png" target="_blank" rel="noopener" aria-label="원본 크기로 보기"><img src="media/beyond-inspector-after.png" alt="미션 커스텀 Inspector: 왼쪽 미션 목록, 공통 기본 정보, 조사 판단 작업 탭" loading="lazy" width="1050" height="524"></a>
+          <figcaption><b>After</b> 미션 에디터. 탭으로 나눠 편집하고, 드롭다운은 Title로 보여 주되 저장은 GUID로 합니다.</figcaption>
+        </figure>
+      </div>
+      <p style="margin-top:22px;max-width:44em">원하는 화면을 직접 스케치해 Codex에 구현을 맡기고, 아쉬운 곳은 구체적으로, 좋은 곳은 이유까지 전하며 고쳐 나갔습니다.</p>
+    </article>
 
-    <h3>시나리오 자동 검증</h3>
-    <p><code>.nani</code> 스크립트는 C#이 아니라서 Unity 컴파일이 성공해도 잘못된 커맨드가 남을 수 있습니다. Naninovel 공식 언어 서버를 꺼내 에이전트 편집기에 연결하고, 의도적 오류 파일로 검사기 자체도 테스트했습니다.</p>
+    <article class="case">
+      <h3>미션 데이터 구조 <span>식별, 호출, 표시 분리</span></h3>
+      <div class="split">
+        <div class="txt">
+          <p>이름을 바꿔도 참조가 풀리지 않는 구조가 목표였습니다. 해시를 식별자로 쓰려 했는데, AI가 해시는 내용이 바뀌면 값도 바뀐다며 GUID를 제안했고, 근거가 타당해 받아들였습니다.</p>
+        </div>
+        <dl class="kv">
+          <div><dt>Id</dt><dd class="role-of">식별</dd><dd class="ex">바뀌지 않는 GUID <code>04fa167f-ed58-…</code></dd></div>
+          <div><dt>Name</dt><dd class="role-of">호출</dd><dd class="ex">Naninovel 스크립트가 부르는 이름 <code>SearchTerminal</code></dd></div>
+          <div><dt>Title</dt><dd class="role-of">표시</dd><dd class="ex">사람이 읽는 제목 <code>단말기 찾기</code></dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="case">
+      <h3>웹 프로토타입 <span>Unity 전에 상태 로직부터 검증</span></h3>
+      <div class="split">
+        <div class="txt">
+          <p>보고서, 조사 계획, 시간, 결과, 제안이 한 흐름에 얽혀 있어 Unity UI로 바로 만들면 수정 비용이 컸습니다.</p>
+          <ul>
+            <li>Penpot으로 화면 설계</li>
+            <li>React와 TypeScript로 프로토타입</li>
+            <li>Vitest로 상태 로직 검증</li>
+          </ul>
+          <p><a href="https://chaaaron000.github.io/beyond-the-screen-prototype/">웹 프로토타입 실행</a></p>
+        </div>
+        <figure class="shot">
+          <a href="media/beyond-prototype-briefing.jpg" target="_blank" rel="noopener" aria-label="원본 크기로 보기"><img src="media/beyond-prototype-briefing.jpg" alt="웹 프로토타입의 조사 브리핑 화면: 시설 정보, 행동 후보, 조사 순서 정하기, 조사 결과" loading="lazy" width="1600" height="900"></a>
+          <figcaption>조사 브리핑 화면. 누가 무엇을 언제 조사할지 정하면 시간이 흐르고 결과가 도착합니다.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <article class="case">
+      <h3>시나리오 자동 검증 <span>Naninovel 언어 서버를 완료 조건으로</span></h3>
+      <div class="txt wide">
+        <p><code>.nani</code> 스크립트는 C#이 아니라서 Unity 컴파일이 성공해도 잘못된 커맨드가 남을 수 있습니다. Naninovel 공식 언어 서버를 꺼내 에이전트용 문법 검사기로 만들고, 진단 통과를 완료 조건에 넣었습니다. 의도적 오류 파일로 검사기 자체도 테스트했습니다.</p>
+      </div>
+    </article>
+
+    <div class="roles-wrap">
+      <p class="label">역할 구분</p>
+      <div class="roles">
+        <div class="role me"><h4>제가 정한 것</h4><ul><li>GUID 채택. AI 제안의 근거를 따져 판단</li><li>Name과 Title 필드</li><li>인스펙터 화면 구성. 직접 스케치하고 피드백</li><li>완료 조건. 언어 서버 진단 통과</li></ul></div>
+        <div class="role ai"><h4>AI에게 맡긴 것</h4><ul><li>식별자 방식 제안. 해시 대신 GUID</li><li>커스텀 인스펙터 구현 (Codex)</li><li>시나리오 스크립트 수정</li></ul></div>
+      </div>
+    </div>
     <div class="links"><a href="https://chaaaron000.github.io/beyond-the-screen-prototype/">웹 프로토타입 실행</a></div>
   </div>
 </section>
 
 <!-- GreenClean -->
 <section class="project" id="greenclean">
-  <div class="col">
-    <span class="status done">완료</span>
-    <h2>GreenClean</h2>
-    <p class="what">카드로 오염된 타일을 정화하는 전략 퍼즐. 콘텐츠를 조건 조합만으로 늘리는 구조를 만들었습니다.</p>
-    <dl class="fields">
-      <dt>기간</dt><dd>2026.05, 2주</dd>
-      <dt>인원</dt><dd>5명</dd>
-      <dt>기술</dt><dd>Unity, C#, ScriptableObject</dd>
-    </dl>
-
-    <div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/x8sHNnBHBuU" title="GreenClean 플레이 영상" loading="lazy" allowfullscreen></iframe></div>
-
-    <h3>Blackboard 시스템</h3>
-    <p>콤보 횟수, 약품 사용 횟수처럼 마스코트가 반응해야 할 상태가 계속 늘어날 것이 보여서, 게임 로직과 반응 시스템이 서로를 직접 알지 않게 했습니다. 로직은 Blackboard에 값만 기록하고, 반응 쪽은 값이 바뀌었다는 알림만 받아 평가합니다.</p>
-    <ul class="points">
-      <li>키마다 INT, FLOAT, BOOL, STRING 중 하나를 스키마로 고정하고, 다른 자료형 값은 거부</li>
-      <li>시작값과 런타임 값을 분리해 스테이지마다 초기화</li>
-      <li>Unity 직렬화 한계 때문에 object 대신 자료형별 값을 명시적으로 보관</li>
-    </ul>
-
-    <h3>조건 트리와 반응 테이블 에디터</h3>
-    <p>명일방주 모작을 하며 원작 버프 데이터가 조건을 트리로 조합하는 걸 보고, 그 방식을 가져왔습니다. 값 비교 6가지, <code>And</code>, <code>Or</code>, <code>Not</code>, <code>AlwaysTrue</code>, <code>IsValueChanged</code> 노드를 조합해 반응 조건을 데이터로 만듭니다. 스키마에 등록된 키만 고를 수 있고, 고른 키의 자료형에 맞춰 입력 칸이 바뀌는 커스텀 인스펙터도 만들었습니다.</p>
-    <figure>
-      <div class="media" data-media="media/greenclean-editor.jpg" data-alt="반응 테이블 에디터: Reaction 3에 And 조건으로 값 변경과 COMBO_COUNT = 3이 묶여 있다">
-        이미지 예정: 반응 테이블 에디터
-        <code>media/greenclean-editor.jpg</code>
+  <div class="wrap">
+    <header class="p-head reveal">
+      <div class="p-title"><p class="p-kicker"><span class="num">05 / 07</span><span class="status done">완료</span></p><h2>GreenClean</h2></div>
+      <div class="p-sum">
+        <p class="p-what"><b>카드로 오염된 타일을 정화하는 전략 퍼즐.</b> 조건 조합만으로 콘텐츠를 늘리는 구조를 만들었습니다.</p>
+        <dl class="p-meta">
+          <div><dt>기간</dt><dd>2026.05, 2주</dd></div>
+          <div><dt>인원</dt><dd>5명</dd></div>
+          <div><dt>기술</dt><dd>Unity, C#, ScriptableObject</dd></div>
+        </dl>
       </div>
+    </header>
+
+    <figure class="stage reveal-media">
+      <a class="yt" href="https://www.youtube.com/watch?v=x8sHNnBHBuU" data-yt="x8sHNnBHBuU" data-title="GreenClean 플레이 영상" aria-label="GreenClean 플레이 영상 재생">
+        <img src="media/greenclean-play.jpg" alt="" loading="lazy"><span class="play"></span>
+      </a>
+      <figcaption>플레이 영상 (YouTube)</figcaption>
     </figure>
-    <p class="lesson">콤보 3, 5, 7, 10회 반응을 새 판단 코드 없이 조건 조합만으로 추가했고, 같은 구조를 「화면 건너편의 너」에서 다시 썼습니다.</p>
+
+    <article class="case">
+      <h3>반응 테이블 에디터 <span>조건을 데이터로 넣으면 마스코트가 반응</span></h3>
+      <div class="split g48">
+        <figure class="shot">
+          <img src="media/greenclean-editor.jpg" alt="반응 테이블 에디터: Reaction 3에 And 조건으로 Is Value Changed와 COMBO_COUNT EQUAL 3이 묶여 있다" loading="lazy" width="968" height="1000">
+          <figcaption><b>데이터</b> Reaction 3. <code>COMBO_COUNT</code>가 바뀌었고 값이 3일 때</figcaption>
+        </figure>
+        <figure class="shot">
+          <video class="auto" muted loop playsinline preload="none" poster="media/greenclean-play.jpg" src="media/greenclean-reaction.mp4" aria-label="3콤보를 달성하자 마스코트가 반응하는 장면"></video>
+          <figcaption><b>결과</b> 3콤보를 달성하면 마스코트가 말하고 재보급을 1회 더합니다.</figcaption>
+        </figure>
+      </div>
+      <div class="txt wide" style="margin-top:28px">
+        <p>스키마에 등록된 키만 고를 수 있고, 고른 키의 자료형에 맞춰 입력 칸이 바뀌는 커스텀 인스펙터입니다.</p>
+        <p class="result">콤보 3, 5, 7, 10회 반응을 새 판단 코드 없이 조건 조합만으로 추가했고, 같은 구조를 「화면 건너편의 너」에서 다시 썼습니다.</p>
+      </div>
+    </article>
+
+    <article class="case">
+      <h3>Blackboard 시스템 <span>게임 로직과 반응 시스템 분리</span></h3>
+      <div class="split even">
+        <div class="txt">
+          <p>콤보 횟수, 약품 사용 횟수처럼 마스코트가 반응할 상태가 계속 늘어날 것이 보였습니다. 로직은 값만 기록하고, 반응 쪽은 값이 바뀌었다는 알림만 받아 평가합니다.</p>
+          <pre class="code"><span class="c">// 게임 로직: 값만 기록</span>
+blackboard.TrySet(BlackboardKey.COMBO_COUNT, currentCombo);
+
+<span class="c">// 반응 시스템: 변경 알림만 받아 평가</span>
+blackboard.ValueChanged += EvaluateReaction;</pre>
+        </div>
+        <div class="txt">
+          <ul>
+            <li>키마다 INT, FLOAT, BOOL, STRING 중 하나를 스키마로 고정하고, 다른 자료형 값은 거부</li>
+            <li>시작값과 런타임 값을 분리해 스테이지마다 초기화</li>
+            <li>Unity 직렬화 한계 때문에 object 대신 자료형별 값을 명시적으로 보관</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="case">
+      <h3>조건 트리 <span>반응 조건을 노드 조합으로</span></h3>
+      <div class="split even">
+        <div class="txt">
+          <p>명일방주 모작을 하며 원작 버프 데이터가 조건을 트리로 조합하는 것을 보고, 그 방식을 가져왔습니다.</p>
+        </div>
+        <ul class="chips" aria-label="조건 노드">
+          <li>값 비교 6가지</li><li>And</li><li>Or</li><li>Not</li><li>AlwaysTrue</li><li>IsValueChanged</li>
+        </ul>
+      </div>
+    </article>
+
+    <div class="roles-wrap">
+      <p class="label">기여 범위</p>
+      <div class="roles">
+        <div class="role mine"><h4>제 몫</h4><ul><li>마스코트 반응 시스템</li><li>Blackboard와 조건 트리</li><li>반응 테이블 에디터</li></ul></div>
+        <div class="role team"><h4>팀원 구현</h4><ul><li>그 밖의 게임 구현</li></ul></div>
+      </div>
+    </div>
+    <div class="links">
+      <a href="https://www.youtube.com/watch?v=x8sHNnBHBuU">플레이 영상</a>
+      <a href="https://github.com/chaaaron000/game-project-code-archive">코드 아카이브</a>
+    </div>
   </div>
 </section>
 
 <!-- MixterPiece -->
 <section class="project" id="mixterpiece">
-  <div class="col">
-    <span class="status done">대회 출품</span>
-    <h2>MixterPiece</h2>
-    <p class="what">물감을 섞어 그림을 완성하는 논리 퍼즐. 데이터를 만드는 사람까지 설계했습니다.</p>
-    <dl class="fields">
-      <dt>기간</dt><dd>2026.07 – 08, 3주</dd>
-      <dt>인원</dt><dd>3명</dd>
-      <dt>기술</dt><dd>Unity, C#, WebGL</dd>
-    </dl>
-
-    <div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/CswE8Itpmho" title="MixterPiece 플레이 영상" loading="lazy" allowfullscreen></iframe></div>
-
-    <h3>벽 시스템과 벽 에디터</h3>
-    <p>격자에 벽 데이터와 이동 가능 검사를 추가해 화면 표시와 연결했습니다. 스테이지 데이터 인스펙터에 격자를 그리고, 셀 경계를 클릭해 벽을 넣고 빼게 만들었습니다. 되돌리기와 전체 제거도 됩니다.</p>
-    <figure>
-      <div class="media" data-media="media/mixterpiece-wall-editor.jpg" data-alt="Wall Editor 인스펙터와 결과 격자 화면">
-        이미지 예정: Wall Editor와 결과 화면
-        <code>media/mixterpiece-wall-editor.jpg</code>
+  <div class="wrap">
+    <header class="p-head reveal">
+      <div class="p-title"><p class="p-kicker"><span class="num">06 / 07</span><span class="status done">대회 출품</span></p><h2>MixterPiece</h2></div>
+      <div class="p-sum">
+        <p class="p-what"><b>물감을 섞어 그림을 완성하는 논리 퍼즐.</b> AI 활용 게임 개발 대회 출품작이고 브라우저에서 플레이할 수 있습니다.</p>
+        <dl class="p-meta">
+          <div><dt>기간</dt><dd>2026.07 – 08, 3주</dd></div>
+          <div><dt>인원</dt><dd>3명</dd></div>
+          <div><dt>기술</dt><dd>Unity, C#, WebGL</dd></div>
+        </dl>
       </div>
+    </header>
+
+    <figure class="stage reveal-media">
+      <video class="auto" muted loop playsinline controls preload="none" poster="media/mixterpiece-play-poster.jpg" src="media/mixterpiece-play.mp4" aria-label="MixterPiece 웹 빌드 플레이"></video>
+      <figcaption>웹 빌드 플레이</figcaption>
     </figure>
 
-    <h3>팀 AI 개발 워크플로</h3>
-    <p>AI가 기획과 구조를 모른 채 고치거나 Unity에서 안 도는 결과를 내고, 팀원마다 쓰는 방식도 달랐습니다. 기획과 개발 자료를 LLM Wiki로 정리해 필요한 문서만 AI에 주고, <code>AGENTS.md</code>에 작업 규칙과 unity-cli 컴파일 확인 절차를 고정해 팀과 공유했습니다.</p>
-    <p class="lesson">좋은 프롬프트 하나보다, 맥락과 규칙, 도구, 검증을 한 작업 환경으로 묶는 것이 중요했습니다.</p>
-    <p class="own">기여 범위: 격자 상태의 최초 구현은 팀 코드이고, 벽 관련 변경이 제 몫입니다.</p>
+    <article class="case">
+      <h3>벽 에디터 <span>인스펙터에서 셀 경계를 클릭해 벽을 편집</span></h3>
+      <div class="split g3">
+        <figure class="shot">
+          <img src="media/mixterpiece-wall-editor.jpg" alt="스테이지 데이터 인스펙터의 Wall Editor와 Answer Editor" loading="lazy" width="386" height="880">
+          <figcaption><b>에디터</b> Wall Editor, Answer Editor</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="media/mixterpiece-wall-result.jpg" alt="벽이 배치된 격자가 게임 화면 이젤에 나타난 모습" loading="lazy" width="628" height="880">
+          <figcaption><b>결과</b> 게임 화면의 벽 배치</figcaption>
+        </figure>
+        <div class="txt">
+          <ul>
+            <li>스테이지 데이터 인스펙터에 격자를 그리고, 셀 경계를 클릭해 벽을 넣고 뺍니다.</li>
+            <li>되돌리기와 전체 제거를 지원합니다.</li>
+            <li>코드를 고치지 않고 스테이지 벽 배치를 편집합니다.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="case">
+      <h3>벽 시스템 <span>벽은 물감이 퍼지는 것을 막습니다</span></h3>
+      <div class="split">
+        <div class="txt">
+          <p>격자 상태 데이터에 벽 정보와 이동 가능 검사를 추가하고, 화면의 벽 표시와 연결했습니다.</p>
+        </div>
+        <figure class="shot">
+          <img src="media/mixterpiece-wall-stage.jpg" alt="벽 스테이지 플레이 화면: 벽은 물감이 퍼지는 것을 막아요" loading="lazy" width="1600" height="889">
+        </figure>
+      </div>
+    </article>
+
+    <article class="case">
+      <h3>설정과 오디오 <span>접근성 옵션과 볼륨 연결</span></h3>
+      <div class="split">
+        <div class="txt">
+          <ul>
+            <li>색각 보정, 색상 심볼 표시 옵션을 설정 화면과 연결</li>
+            <li>마스터, 배경음악, 효과음 볼륨을 오디오 믹서에 연결</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <img src="media/mixterpiece-settings.jpg" alt="설정 화면: 오디오 볼륨 세 가지와 접근성의 색각 보정, 색상 심볼 표시" loading="lazy" width="1600" height="889">
+        </figure>
+      </div>
+    </article>
+
+    <article class="case">
+      <h3>팀 AI 개발 워크플로 <span>LLM Wiki, AGENTS.md, unity-cli</span></h3>
+      <div class="split even">
+        <div class="txt">
+          <p>AI가 기획과 구조를 모른 채 고치거나 Unity에서 돌지 않는 결과를 냈고, 팀원마다 쓰는 방식도 달랐습니다.</p>
+          <p class="result">좋은 프롬프트 하나보다, 맥락과 규칙, 도구, 검증을 한 작업 환경으로 묶는 것이 중요했습니다.</p>
+        </div>
+        <div class="txt">
+          <ul>
+            <li>기획과 개발 자료를 LLM Wiki로 정리해 필요한 문서만 AI에 전달</li>
+            <li><code>AGENTS.md</code>에 작업 규칙을 고정해 팀과 공유</li>
+            <li>unity-cli 컴파일 확인을 작업 절차에 포함</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <div class="roles-wrap">
+      <p class="label">역할 구분</p>
+      <div class="roles">
+        <div class="role me"><h4>제가 정한 것</h4><ul><li>AI에 줄 문서의 범위</li><li>작업 규칙</li><li>컴파일 확인 절차</li></ul></div>
+        <div class="role ai"><h4>AI에게 맡긴 것</h4><ul><li>규칙 안에서 코드 작성과 수정</li><li>unity-cli 컴파일 확인</li></ul></div>
+      </div>
+      <p class="label" style="margin-top:40px">기여 범위</p>
+      <div class="roles">
+        <div class="role mine"><h4>제 몫</h4><ul><li>벽 데이터, 이동 가능 검사, 벽 표시 연결</li><li>벽 에디터</li><li>설정 화면과 오디오 믹서 연결</li><li>팀 AI 워크플로 구성</li></ul></div>
+        <div class="role team"><h4>팀원 구현</h4><ul><li>격자 상태의 최초 구현</li><li>색각 보정 재질</li></ul></div>
+      </div>
+    </div>
     <div class="links">
       <a href="https://chaaaron000.github.io/nan2026/">브라우저에서 플레이</a>
+      <a href="https://www.youtube.com/watch?v=CswE8Itpmho">플레이 영상</a>
       <a href="https://github.com/chaaaron000/game-project-code-archive">코드 아카이브</a>
     </div>
   </div>
@@ -489,31 +941,69 @@
 
 <!-- Nostalgia -->
 <section class="project" id="nostalgia">
-  <div class="col">
-    <span class="status done">Steam 출시</span>
-    <h2>Nostalgia</h2>
-    <p class="what">어두운 병원 미로를 둘이 함께 탐험하는 2인 온라인 협동 호러. 팀으로 끝까지 출시했습니다.</p>
-    <dl class="fields">
-      <dt>기간</dt><dd>2024.07 – 2025.07</dd>
-      <dt>인원</dt><dd>3명</dd>
-      <dt>기술</dt><dd>Unity, C#, Photon Fusion, Vivox</dd>
-    </dl>
+  <div class="wrap">
+    <header class="p-head reveal">
+      <div class="p-title"><p class="p-kicker"><span class="num">07 / 07</span><span class="status done">Steam 출시</span></p><h2>Nostalgia</h2></div>
+      <div class="p-sum">
+        <p class="p-what"><b>2인 온라인 협동 호러.</b> 어두운 병원 미로를 둘이 함께 탐험합니다. 팀으로 끝까지 출시했습니다.</p>
+        <dl class="p-meta">
+          <div><dt>기간</dt><dd>2024.07 – 2025.07</dd></div>
+          <div><dt>인원</dt><dd>3명</dd></div>
+          <div><dt>기술</dt><dd>Unity, C#, Photon Fusion, Vivox</dd></div>
+        </dl>
+      </div>
+    </header>
 
+    <div class="pair stage reveal-media">
+      <figure class="shot"><img src="media/nostalgia-play-1.jpg" alt="Nostalgia 플레이 화면: 등불을 든 동료와 어두운 병원 복도" loading="lazy" width="1600" height="900"></figure>
+      <figure class="shot"><img src="media/nostalgia-play-2.jpg" alt="Nostalgia 플레이 화면: 붉은 안개가 낀 계단 아래" loading="lazy" width="1600" height="900"></figure>
+    </div>
     <div class="steam"><iframe src="https://store.steampowered.com/widget/3693270/" title="Nostalgia Steam 상점" loading="lazy"></iframe></div>
 
-    <h3>Photon Fusion 전환 제안</h3>
-    <p>기존 Unity RPC 방식은 오류 원인을 추적하기 어렵고, 상태와 애니메이션 동기화가 자주 어긋났으며, 기능 하나를 붙이는 데 시간이 많이 들었습니다. 이미 만든 기능을 다시 만드는 비용과 같은 방식으로 계속 확장할 때 반복될 비용을 견줘 근거를 정리했고, 팀 동의를 얻어 Fusion으로 옮겼습니다.</p>
+    <article class="case">
+      <h3>Photon Fusion 전환 <span>네트워크 구조 교체를 제안</span></h3>
+      <div class="txt wide">
+        <p>기존 RPC 방식은 오류 원인을 추적하기 어려웠고, 상태와 애니메이션 동기화가 자주 어긋났습니다. 이미 만든 기능을 다시 만드는 비용과, 같은 방식으로 계속 확장할 때 반복될 비용을 견줘 근거를 정리했고 팀 동의를 얻어 옮겼습니다.</p>
+      </div>
+    </article>
 
-    <h3>몬스터 FSM 리팩터링</h3>
-    <p>팀원이 만든 몬스터 행동 알고리즘을 분석해 대기, 경계, 추적, 공격 네 상태로 나누고, 동작을 그대로 지킨 채 Fusion 상태 머신으로 옮겼습니다. 새로 만들기보다 기존 코드가 왜 그렇게 동작하는지부터 이해하는 걸 원칙으로 삼았습니다.</p>
+    <article class="case">
+      <h3>몬스터 FSM 리팩터링 <span>동작을 그대로 지킨 채 상태 머신으로</span></h3>
+      <div class="split even">
+        <div class="txt">
+          <p>팀원이 만든 몬스터 행동 알고리즘을 분석해 네 상태로 나누고, Fusion 상태 머신으로 옮겼습니다. 새로 만들기보다 기존 코드가 왜 그렇게 동작하는지부터 이해했습니다.</p>
+        </div>
+        <ul class="chips" aria-label="몬스터 상태"><li>대기</li><li>경계</li><li>추적</li><li>공격</li></ul>
+      </div>
+    </article>
 
-    <h3>Vivox 음성 채팅</h3>
-    <p>Photon 세션 이름으로 Vivox 위치 기반 채널을 정해 참가하고, 플레이어 위치를 음성 처리에 반영했습니다. 설정 화면에서 마이크와 출력 장치를 바꿀 수 있게 연결했습니다.</p>
+    <article class="case">
+      <h3>Vivox 음성 채팅 <span>위치 기반 음성 채널</span></h3>
+      <div class="txt wide">
+        <ul>
+          <li>Photon 세션 이름으로 Vivox 위치 기반 채널을 정해 참가</li>
+          <li>플레이어 위치를 음성 처리에 반영</li>
+          <li>설정 화면에서 마이크와 출력 장치 변경</li>
+        </ul>
+      </div>
+    </article>
 
-    <h3>출시 전 난이도 조정</h3>
-    <p>1년 내내 플레이한 팀의 감각이 무뎌졌다고 보고 외부 플레이테스트를 맡겼습니다. 피드백 반영 폭을 두고 의견이 갈렸을 때, 도입부는 유지하고 마지막 스테이지만 올리는 쪽으로 합의했습니다.</p>
+    <article class="case">
+      <h3>출시 전 난이도 조정 <span>지인 플레이테스트와 합의</span></h3>
+      <div class="txt wide">
+        <p>1년 내내 플레이한 팀의 감각이 무뎌졌다고 보고 지인들에게 플레이테스트를 맡겼습니다. 피드백 반영 폭을 두고 의견이 갈렸을 때, 도입부는 유지하고 마지막 스테이지만 올리는 쪽으로 합의했습니다.</p>
+        <p class="result">출시 후에도 Steam 평가에는 쉽다는 의견이 많았습니다. 소수 지인 테스트만으로는 한계가 있다는 것을 배웠습니다.</p>
+      </div>
+    </article>
 
-    <p class="own">기여 범위: 몬스터 초기 알고리즘은 팀원 구현이고, 상태 머신 리팩터링과 Vivox 연동 두 커밋이 제 몫입니다. 커밋 단위 구분은 코드 아카이브에 있습니다.</p>
+    <div class="roles-wrap">
+      <p class="label">기여 범위</p>
+      <div class="roles">
+        <div class="role mine"><h4>제 몫</h4><ul><li>Photon Fusion 전환 제안과 네트워크 구조 전환</li><li>몬스터 상태 머신 리팩터링</li><li>Vivox 음성 채팅 연동</li></ul></div>
+        <div class="role team"><h4>팀원 구현</h4><ul><li>몬스터 초기 행동 알고리즘</li></ul></div>
+      </div>
+      <p class="flow-note">커밋 단위 구분은 코드 아카이브에 있습니다.</p>
+    </div>
     <div class="links">
       <a href="https://store.steampowered.com/app/3693270/">Steam 상점 페이지</a>
       <a href="https://github.com/chaaaron000/game-project-code-archive">코드 아카이브</a>
@@ -521,59 +1011,135 @@
   </div>
 </section>
 
-<footer>
-  <div class="col">
-    <p>이상현, <a href="mailto:bjpowerll12967@gmail.com">bjpowerll12967@gmail.com</a>, <a href="https://github.com/chaaaron000">github.com/chaaaron000</a></p>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div>
+      <h2>이상현</h2>
+      <p>AI와 함께 쓰는 콘텐츠 제작 도구를 만드는 게임 개발자</p>
+    </div>
+    <p class="contact">
+      <a href="mailto:bjpowerll12967@gmail.com">bjpowerll12967@gmail.com</a>
+      <a href="https://github.com/chaaaron000">github.com/chaaaron000</a>
+    </p>
   </div>
 </footer>
 
-</main>
-</div>
-
 <script>
-  // data-media 자리에 파일이 올라와 있으면 영상·이미지로 바꾼다. 없으면 안내 문구를 그대로 둔다.
-  document.querySelectorAll('[data-media]').forEach(async (box) => {
-    const src = box.dataset.media;
-    try {
-      const res = await fetch(src, { method: 'HEAD' });
-      if (!res.ok) return;
-    } catch (e) {
-      return;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 화면에 보일 때만 영상을 재생한다.
+  const videoWatch = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) e.target.play().catch(() => {});
+      else e.target.pause();
+    });
+  }, { threshold: 0.35 });
+  function watchVideo(v) {
+    if (reduceMotion) { v.controls = true; return; }
+    videoWatch.observe(v);
+  }
+  document.querySelectorAll('video.auto').forEach(watchVideo);
+
+  // data-media 자리: 그 이름의 파일이 media/에 있으면 영상·이미지로 나타난다. 없으면 아무것도 보이지 않는다.
+  const probes = new Map();
+  function fileExists(src) {
+    if (!probes.has(src)) {
+      probes.set(src, fetch(src, { method: 'HEAD' }).then((r) => r.ok).catch(() => false));
     }
+    return probes.get(src);
+  }
+  function makeMedia(src, alt) {
     const ext = src.split('.').pop().toLowerCase();
-    let el;
     if (ext === 'mp4' || ext === 'webm') {
-      el = document.createElement('video');
-      el.src = src;
-      el.muted = true;
-      el.autoplay = true;
-      el.loop = true;
-      el.playsInline = true;
-      el.setAttribute('muted', '');
-      el.setAttribute('playsinline', '');
-      el.setAttribute('aria-label', box.dataset.alt || '');
-    } else {
-      el = document.createElement('img');
-      el.src = src;
-      el.loading = 'lazy';
-      el.alt = box.dataset.alt || '';
+      const v = document.createElement('video');
+      v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata';
+      v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+      v.setAttribute('aria-label', alt);
+      v.src = src;
+      return v;
     }
-    box.replaceChildren(el);
-    box.classList.add('loaded');
+    const img = document.createElement('img');
+    img.src = src; img.alt = alt;
+    return img;
+  }
+  document.querySelectorAll('[data-media]').forEach(async (slot) => {
+    if (!(await fileExists(slot.dataset.media))) return;
+    const el = makeMedia(slot.dataset.media, slot.dataset.alt || '');
+    if (slot.dataset.mode === 'swap') {
+      // 도식을 실제 화면으로 바꾼다.
+      slot.replaceChildren(el);
+      const tag = slot.parentElement.querySelector('.tag');
+      if (tag) tag.remove();
+    } else {
+      if (el.tagName === 'VIDEO') el.controls = true;
+      slot.prepend(el);
+      slot.hidden = false;
+      const group = slot.closest('[data-slots]');
+      if (group) group.hidden = false;
+    }
+    if (el.tagName === 'VIDEO') watchVideo(el);
   });
 
-  // 왼쪽 목록에서 지금 보고 있는 섹션을 노란색으로 표시한다.
-  const links = [...document.querySelectorAll('.tree a')];
-  const byId = new Map(links.map((a) => [a.getAttribute('href').slice(1), a]));
-  const io = new IntersectionObserver((entries) => {
+  // YouTube: 누르기 전에는 캡처 한 장만 보여 주고, 누르면 그 자리에서 재생한다.
+  document.querySelectorAll('a[data-yt]').forEach((a) => {
+    a.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0';
+      f.title = a.dataset.title || '';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      const box = document.createElement('div');
+      box.className = 'yt';
+      box.append(f);
+      a.replaceWith(box);
+    });
+  });
+
+  // Caldera 도식: 화면에 들어오면 벽 그리기를 한 번 재생한다.
+  const views = document.getElementById('caldera-views');
+  if (views) {
+    const once = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { views.classList.add('play'); once.disconnect(); }
+    }, { threshold: 0.4 });
+    once.observe(views);
+  }
+
+  // 섹션 머리와 대표 화면의 등장은 CSS 스크롤 연동(animation-timeline: view())으로 한다.
+  // 그것을 못 쓰는 브라우저에서만, 화면 아래에 있던 것을 들어올 때 한 번 떠오르게 한다.
+  if (!reduceMotion && !(window.CSS && CSS.supports('animation-timeline', 'view()'))) {
+    const enter = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        // 건너뛰어 와서 이미 화면 한가운데에 있으면 연출 없이 바로 보인다.
+        if (e.boundingClientRect.top < window.innerHeight * 0.6) e.target.classList.add('now');
+        e.target.classList.remove('pre');
+        enter.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('.reveal, .reveal-media').forEach((el) => {
+      // 처음부터 화면 안이나 위에 있는 것은 건드리지 않는다.
+      if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('pre'); enter.observe(el); }
+    });
+  }
+
+  // 지금 보고 있는 섹션을 상단 줄에 표시한다.
+  const navLinks = [...document.querySelectorAll('.nav-links a')];
+  const navBox = document.querySelector('.nav-links');
+  const linkById = new Map(navLinks.map((a) => [a.getAttribute('href').slice(1), a]));
+  const spy = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
-      links.forEach((a) => a.classList.remove('active'));
-      const a = byId.get(e.target.id);
-      if (a) a.classList.add('active');
+      navLinks.forEach((a) => a.classList.remove('active'));
+      const a = linkById.get(e.target.id);
+      if (!a) { navBox.scrollTo({ left: 0 }); return; }
+      a.classList.add('active');
+      navBox.scrollTo({ left: a.offsetLeft - navBox.offsetLeft - 16, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-  byId.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  linkById.forEach((_, id) => { const el = document.getElementById(id); if (el) spy.observe(el); });
+  spy.observe(document.querySelector('.hero'));
 </script>
 </body>
 </html>
