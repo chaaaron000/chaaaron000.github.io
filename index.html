@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vandal — 게임 개발 포트폴리오</title>
+<title>이상현 — 게임 클라이언트 프로그래머 포트폴리오</title>
 <meta name="description" content="AI와 사람이 함께 쓰는 콘텐츠 제작 도구를 만드는 Unity 게임 개발자">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
@@ -109,8 +109,20 @@
   /* 기반 카드 */
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
   .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
-  #foundation .cards { grid-template-columns: 1fr 1fr; }
-  @media (max-width: 720px) { #foundation .cards { grid-template-columns: 1fr; } }
+  .profile { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px 28px; margin: 36px 0 8px; padding: 24px 0 0; border-top: 1px solid var(--line); }
+  .profile h4 { margin: 0 0 4px; font-size: 13px; letter-spacing: .06em; color: var(--accent); }
+  .profile p { margin: 0; font-size: 15.5px; }
+  .profile span { display: block; font-size: 13.5px; color: var(--muted); margin-bottom: 4px; }
+  .embed { aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; background: #000; margin: 8px 0 6px; }
+  .embed iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .steam { margin: 8px 0 6px; }
+  .steam iframe { width: 100%; height: 190px; border: 0; }
+  .meta-line { color: var(--muted); font-size: 15px; margin: -20px 0 28px; }
+  .own { font-size: 14px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 12px; margin: 10px 0 0; }
+  .lesson { border-left: 4px solid var(--accent); padding: 4px 0 4px 18px; margin: 24px 0 0; font-weight: 600; }
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; margin-top: 28px; }
+  .feature h3 { margin-top: 0; }
+  @media (max-width: 720px) { .profile, .feature { grid-template-columns: 1fr; } }
   .card h4 { margin: 0 0 4px; font-size: 18px; }
   .card .meta { font-size: 13.5px; color: var(--muted); margin-bottom: 10px; }
   .card p { font-size: 15.5px; }
@@ -133,7 +145,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="handle">Vandal · Unity 게임 개발자</div>
+    <div class="handle">이상현 · Unity 게임 클라이언트 프로그래머</div>
     <h1>AI와 사람이 <em>함께 쓰는</em><br>콘텐츠 제작 도구를 만듭니다</h1>
     <p class="lead">기능 하나를 구현하는 것보다, 콘텐츠가 계속 늘어날 수 있는 구조를 만드는 데 집중해 왔습니다. 지금은 사람이 쓰는 편집기와 AI 에이전트가 쓰는 인터페이스를 같은 데이터 위에 세우고, 그 위에서 게임을 만들고 있습니다.</p>
     <ul class="chips">
@@ -142,11 +154,22 @@
       <li>AI 에이전트 워크플로 설계</li>
       <li>팀 프로젝트 Steam 출시</li>
     </ul>
+    <div class="profile">
+      <div><h4>학력</h4><p>동국대학교 멀티미디어공학과</p><span>2019.02 – 2025.02</span></div>
+      <div><h4>교육</h4><p>네오위즈 Advanced K-Game Academy 7기</p><span>2026.02 – 2026.10</span></div>
+      <div><h4>출시 · 출품</h4><p>Nostalgia Steam 출시</p><span>2025.07</span><p>MixterPiece AI 활용 게임 개발 대회 출품</p><span>2026.08</span></div>
+      <div><h4>기술</h4><p>Unity · C# · Photon Fusion · Vivox · Naninovel · React · TypeScript · Three.js</p></div>
+      <div><h4>AI 도구</h4><p>Claude Code · Codex · OpenCode · Herdr · Blender MCP · ComfyUI</p></div>
+      <div><h4>연락처</h4><p><a href="mailto:bjpowerll12967@gmail.com">bjpowerll12967@gmail.com</a></p><p><a href="https://github.com/chaaaron000">github.com/chaaaron000</a></p></div>
+    </div>
     <nav class="toc">
       <a href="#caldera">01 Caldera</a>
       <a href="#perfecther">02 PerfectHer</a>
       <a href="#workflow">03 AI 작업 환경</a>
-      <a href="#foundation">04 기반 프로젝트</a>
+      <a href="#greenclean">04 GreenClean</a>
+      <a href="#nostalgia">05 Nostalgia</a>
+      <a href="#mixterpiece">06 MixterPiece</a>
+      <a href="#beyond">07 화면 건너편의 너</a>
     </nav>
   </div>
 </header>
@@ -315,41 +338,145 @@
   </div>
 </section>
 
-<!-- 04 Foundation -->
-<section class="project" id="foundation">
+<!-- 04 GreenClean -->
+<section class="project" id="greenclean">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">04</span><span>기반 프로젝트</span></div>
-    <h2>AI 이전부터 이어 온 같은 질문</h2>
-    <p class="sub">콘텐츠를 하나 더 추가할 때 프로그래머가 매번 손대야 하는가?</p>
+    <div class="eyebrow"><span class="num">04</span><span>GreenClean</span></div>
+    <h2>콘텐츠를 조건 조합만으로 늘리는 구조</h2>
+    <p class="sub">카드로 오염된 타일을 정화하는 전략 퍼즐.</p>
+    <p class="meta-line">2026.05 · 2주 · 5명 · Unity</p>
 
-    <div class="cards">
-      <div class="card">
-        <h4>「화면 건너편의 너」</h4>
-        <div class="meta">비주얼 노벨 · 처음으로 AI 중심으로 개발한 프로젝트</div>
-        <p>미션 데이터의 식별자(GUID)·스크립트 호출용 이름·표시 제목을 분리하고, 커스텀 에디터로 GUID를 복사하고 찾아보던 수작업을 없앴습니다. AI가 만든 첫 화면을 직접 써 보며 패널 분리와 정보 배치를 반복 지시해 완성했습니다.</p>
-        <div class="media" data-media="media/mission-editor.png" data-alt="기본 인스펙터와 미션 에디터 비교" style="aspect-ratio: 16/10">
-          이미지 예정 · Debug 인스펙터 ↔ 미션 에디터 비교
-          <code>media/mission-editor.png</code>
+    <div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/x8sHNnBHBuU" title="GreenClean 플레이 영상" loading="lazy" allowfullscreen></iframe></div>
+
+    <div class="feature">
+      <div>
+        <h3>Blackboard 시스템</h3>
+        <p>콤보 횟수, 약품 사용 횟수처럼 마스코트가 반응해야 할 상태가 계속 늘어날 것이 보여서, 게임 로직과 반응 시스템이 서로를 직접 알지 않게 했습니다. 로직(GameManager, CardManager)은 Blackboard에 값만 기록하고, 반응 쪽은 값이 바뀌었다는 알림만 받아 평가합니다.</p>
+        <ul class="points">
+          <li>키마다 INT·FLOAT·BOOL·STRING 중 하나를 스키마로 고정하고, 다른 자료형 값은 거부</li>
+          <li>시작값과 런타임 값을 분리해 스테이지마다 초기화</li>
+          <li>Unity 직렬화 한계 때문에 object 대신 자료형별 값을 명시적으로 보관</li>
+        </ul>
+      </div>
+      <div>
+        <h3>조건 트리와 반응 테이블 에디터</h3>
+        <p>명일방주 모작을 하며 원작 버프 데이터가 조건을 트리로 조합하는 걸 보고, 그 방식을 가져왔습니다. 값 비교 6가지, And·Or·Not, AlwaysTrue, IsValueChanged 노드를 조합해 반응 조건을 데이터로 만듭니다.</p>
+        <p>스키마에 등록된 키만 고를 수 있고, 고른 키의 자료형에 맞춰 입력 칸이 바뀌는 커스텀 인스펙터도 만들었습니다.</p>
+      </div>
+    </div>
+    <div class="media" data-media="media/greenclean-editor.jpg" data-alt="반응 테이블 에디터: Reaction 3에 And 조건으로 값 변경과 COMBO_COUNT = 3이 묶여 있다" style="margin-top:24px">
+      이미지 예정 · 반응 테이블 에디터 캡처
+      <code>media/greenclean-editor.jpg</code>
+    </div>
+    <p class="lesson">콤보 3·5·7·10회 반응을 새 판단 코드 없이 조건 조합만으로 추가했고, 같은 구조를 「화면 건너편의 너」에서 다시 썼습니다.</p>
+  </div>
+</section>
+
+<!-- 05 Nostalgia -->
+<section class="project" id="nostalgia">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">05</span><span>Nostalgia</span><span class="badge">Steam 출시</span></div>
+    <h2>팀으로 끝까지 출시한 온라인 협동 호러</h2>
+    <p class="sub">어두운 병원 미로를 둘이 함께 탐험하는 2인 온라인 협동 호러.</p>
+    <p class="meta-line">2024.07 – 2025.07 · 3명 · Unity · Photon Fusion · Vivox</p>
+
+    <div class="steam"><iframe src="https://store.steampowered.com/widget/3693270/" title="Nostalgia Steam 상점" loading="lazy"></iframe></div>
+
+    <div class="feature">
+      <div>
+        <h3>Photon Fusion 전환 제안</h3>
+        <p>기존 Unity RPC 방식은 오류 원인을 추적하기 어렵고, 상태와 애니메이션 동기화가 자주 어긋났으며, 기능 하나를 붙이는 데 시간이 많이 들었습니다. 이미 만든 기능을 다시 만드는 비용과, 같은 방식으로 계속 확장할 때 반복될 비용을 견줘 근거를 정리했고, 팀 동의를 얻어 Fusion으로 옮겼습니다.</p>
+      </div>
+      <div>
+        <h3>몬스터 FSM 리팩터링</h3>
+        <p>팀원이 만든 몬스터 행동 알고리즘을 분석해 대기·경계·추적·공격 네 상태로 나누고, 동작을 그대로 지킨 채 Fusion 상태 머신으로 옮겼습니다. 새로 만들기보다 기존 코드가 왜 그렇게 동작하는지부터 이해하는 걸 원칙으로 삼았습니다.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div>
+        <h3>Vivox 음성 채팅</h3>
+        <p>Photon 세션 이름으로 Vivox 위치 기반 채널을 정해 참가하고, 플레이어 위치를 음성 처리에 반영했습니다. 설정 화면에서 마이크와 출력 장치를 바꿀 수 있게 연결했습니다.</p>
+      </div>
+      <div>
+        <h3>출시 전 난이도 조정</h3>
+        <p>1년 내내 플레이한 팀의 감각이 무뎌졌다고 보고 외부 플레이테스트를 맡겼습니다. 피드백 반영 폭을 두고 의견이 갈렸을 때, 도입부는 유지하고 마지막 스테이지만 올리는 쪽으로 합의했습니다.</p>
+      </div>
+    </div>
+    <p class="own">기여 범위: 몬스터 초기 알고리즘은 팀원 구현이고, 상태 머신 리팩터링과 Vivox 연동 두 커밋이 제 몫입니다. 커밋 단위 구분은 코드 아카이브에 있습니다.</p>
+    <div class="links">
+      <a href="https://store.steampowered.com/app/3693270/">Steam 상점 페이지</a>
+      <a href="https://github.com/chaaaron000/game-project-code-archive">코드 아카이브</a>
+    </div>
+  </div>
+</section>
+
+<!-- 06 MixterPiece -->
+<section class="project" id="mixterpiece">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">06</span><span>MixterPiece</span><span class="badge">대회 출품</span></div>
+    <h2>데이터를 만드는 사람까지 설계한 퍼즐</h2>
+    <p class="sub">AI 활용 게임 개발 대회에 출품한, 물감을 섞어 그림을 완성하는 논리 퍼즐.</p>
+    <p class="meta-line">2026.07 – 08 · 3주 · 3명 · Unity · WebGL</p>
+
+    <div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/CswE8Itpmho" title="MixterPiece 플레이 영상" loading="lazy" allowfullscreen></iframe></div>
+
+    <div class="feature">
+      <div>
+        <h3>벽 시스템과 벽 에디터</h3>
+        <p>격자에 벽 데이터와 이동 가능 검사를 추가해 화면 표시와 연결했습니다. 스테이지 데이터 인스펙터에 격자를 그리고, 셀 경계를 클릭해 벽을 넣고 빼게 만들었습니다(Undo, 전체 제거 지원).</p>
+        <div class="media" data-media="media/mixterpiece-wall-editor.jpg" data-alt="Wall Editor 인스펙터와 결과 격자 화면" style="aspect-ratio:16/10">
+          이미지 예정 · Wall Editor와 결과 화면
+          <code>media/mixterpiece-wall-editor.jpg</code>
         </div>
       </div>
-      <div class="card">
-        <h4>GreenClean</h4>
-        <div class="meta">팀 프로젝트 · Unity</div>
-        <p>콤보·약품 사용 횟수 등 다양한 조건에 따른 마스코트 반응을 위해 ScriptableObject 기반 Blackboard와 조합 가능한 조건 객체를 설계했습니다. 새 반응은 조건 조합만으로 추가하고, 이 조건 시스템은 다른 장르인 「화면 건너편의 너」에서도 재사용했습니다.</p>
+      <div>
+        <h3>팀 AI 개발 워크플로</h3>
+        <p>AI가 기획과 구조를 모른 채 고치거나 Unity에서 안 도는 결과를 내고, 팀원마다 쓰는 방식도 달랐습니다. 기획·개발 자료를 LLM Wiki로 정리해 필요한 문서만 AI에 주고, AGENTS.md에 작업 규칙과 unity-cli 컴파일 확인 절차를 고정해 팀과 공유했습니다.</p>
+        <p class="lesson">좋은 프롬프트 하나보다, 맥락·규칙·도구·검증을 한 작업 환경으로 묶는 것이 중요했습니다.</p>
       </div>
-      <div class="card">
-        <h4>MixterPiece</h4>
-        <div class="meta">퍼즐 · Unity</div>
-        <p>격자의 벽을 데이터로 표현하고, 셀 사이 경계를 클릭해 벽을 고치는 전용 커스텀 인스펙터를 만들었습니다. 저장하고 쓰는 데이터뿐 아니라 사람이 그 데이터를 만드는 과정까지 설계한 첫 사례입니다.</p>
+    </div>
+    <p class="own">기여 범위: 격자 상태의 최초 구현은 팀 코드이고, 벽 관련 변경이 제 몫입니다.</p>
+    <div class="links">
+      <a href="https://chaaaron000.github.io/nan2026/">브라우저에서 플레이</a>
+      <a href="https://github.com/chaaaron000/game-project-code-archive">코드 아카이브</a>
+    </div>
+  </div>
+</section>
+
+<!-- 07 화면 건너편의 너 -->
+<section class="project" id="beyond">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">07</span><span>화면 건너편의 너</span><span class="badge">진행 중</span></div>
+    <h2>처음으로 AI 중심으로 개발한 프로젝트</h2>
+    <p class="sub">조사·보고서·시간 관리가 결합된 비주얼 노벨.</p>
+    <p class="meta-line">2026.04 – · 2명 · Unity · Naninovel · React · TypeScript</p>
+
+    <div class="feature">
+      <div>
+        <h3>미션 데이터: 식별·호출·표시 분리</h3>
+        <p>이름을 바꿔도 참조가 풀리지 않는 구조가 목표였습니다. 처음엔 해시를 식별자로 쓰려 했는데, AI가 해시는 내용이 바뀌면 값도 바뀐다며 GUID를 제안했고, 근거가 타당해 받아들였습니다. 여기에 Naninovel 호출용 Name과 사람이 읽는 Title을 더해 역할을 나눴습니다.</p>
       </div>
-      <div class="card">
-        <h4>Nostalgia</h4>
-        <div class="meta">팀 프로젝트 · 약 1년 · Steam 출시</div>
-        <p>기존 멀티플레이 구조에서 오류 추적과 기능 확장이 어려워지자 Photon Fusion 전환을 제안했고, 팀원이 만든 몬스터 행동 알고리즘을 동작을 유지한 채 Fusion의 FSM 구조로 리팩터링했습니다. 출시 전에는 외부 플레이테스트로 난이도를 조정했습니다.</p>
+      <div>
+        <h3>미션 커스텀 인스펙터</h3>
+        <p>기본 인스펙터에서는 GUID가 그대로 보이고 모든 필드가 한 열로 늘어서 있었습니다. 원하는 화면을 직접 스케치해 Codex Sol에 구현을 맡기고, 아쉬운 곳은 구체적으로, 좋은 곳은 이유까지 전하며 고쳐 나갔습니다. GUID를 복사하고 대상을 다시 찾던 작업이 사라졌습니다.</p>
+      </div>
+    </div>
+    <div class="media" data-media="media/mission-editor.png" data-alt="기본 Debug 인스펙터와 미션 커스텀 인스펙터 비교" style="margin-top:24px">
+      이미지 예정 · Debug 인스펙터 ↔ 미션 에디터 비교
+      <code>media/mission-editor.png</code>
+    </div>
+    <div class="feature">
+      <div>
+        <h3>Unity 전에 웹으로 먼저 검증</h3>
+        <p>보고서·조사 계획·시간·결과·제안이 한 흐름에 얽혀 있어, Unity UI로 바로 만들면 수정 비용이 컸습니다. Penpot으로 화면을 설계하고 React·TypeScript 프로토타입과 Vitest로 상태 로직부터 검증했습니다.</p>
+      </div>
+      <div>
+        <h3>시나리오 자동 검증</h3>
+        <p>.nani 스크립트는 C#이 아니라 Unity 컴파일이 성공해도 잘못된 커맨드가 남을 수 있습니다. Naninovel 공식 언어 서버를 꺼내 에이전트 편집기에 연결하고, 의도적 오류 파일로 검사기 자체도 테스트했습니다.</p>
       </div>
     </div>
     <div class="links">
-      <a href="https://github.com/chaaaron000/game-project-code-archive">코드 아카이브 (Nostalgia · MixterPiece 등)</a>
+      <a href="https://chaaaron000.github.io/beyond-the-screen-prototype/">웹 프로토타입 실행</a>
     </div>
   </div>
 </section>
@@ -358,7 +485,7 @@
 
 <footer>
   <div class="wrap">
-    <p>GitHub <a href="https://github.com/chaaaron000">@chaaaron000</a></p>
+    <p>이상현 · <a href="mailto:bjpowerll12967@gmail.com">bjpowerll12967@gmail.com</a> · <a href="https://github.com/chaaaron000">github.com/chaaaron000</a> · <a href="https://github.com/chaaaron000/game-project-code-archive">코드 아카이브</a></p>
   </div>
 </footer>
 

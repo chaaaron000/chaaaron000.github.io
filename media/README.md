@@ -8,7 +8,9 @@
 | `perfecther-case-editor.mp4` | 사건 편집기에서 노드를 고치고 웹 시안에서 바뀐 결과를 보여 주기 | 10초 안팎 |
 | `perfecther-3d-background.png` | Blender MCP로 만든 은신처 3D 배경 | 16:9 |
 | `perfecther-title.png` | 3D 배경 + 캐릭터를 합성한 타이틀 화면 | 16:9 |
-| `mission-editor.png` | 「화면 건너편의 너」 Debug 인스펙터와 미션 에디터를 나란히 놓은 비교 | 16:10 |
+| `mission-editor.png` | 「화면 건너편의 너」 Debug 인스펙터와 미션 에디터를 나란히 놓은 비교 (크래프톤 슬라이드 22쪽) | 16:9 |
+| `greenclean-editor.jpg` | GreenClean 반응 테이블 에디터 캡처 (크래프톤 슬라이드 8쪽) | 16:9 |
+| `mixterpiece-wall-editor.jpg` | MixterPiece Wall Editor와 결과 화면 (크래프톤 슬라이드 16쪽) | 16:10 |
 
 ## 참고
 
