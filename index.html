@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vandal — 게임 개발 포트폴리오</title>
+<meta name="description" content="AI와 사람이 함께 쓰는 콘텐츠 제작 도구를 만드는 Unity 게임 개발자">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --paper: #fffdf8;
+    --ink: #1b1a17;
+    --muted: #6b675e;
+    --line: #dcd6c8;
+    --accent: #c2410c;
+    --accent-soft: #fbe7da;
+    --human: #1d4ed8;
+    --human-soft: #e3ebfd;
+    --ai: #047857;
+    --ai-soft: #dcf3ea;
+    --radius: 14px;
+    --max: 1040px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Pretendard", system-ui, -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+  a { color: inherit; text-underline-offset: 3px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* 상단 */
+  header.hero { padding: 96px 0 56px; border-bottom: 1px solid var(--line); }
+  .hero .handle { font-size: 15px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+  .hero h1 { font-size: clamp(30px, 4.6vw, 48px); line-height: 1.3; margin: 12px 0 20px; font-weight: 800; letter-spacing: -0.02em; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p.lead { font-size: 19px; color: var(--muted); max-width: 720px; margin: 0 0 28px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+  .chips li { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 4px 14px; font-size: 14px; }
+  nav.toc { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 36px; font-size: 15px; }
+  nav.toc a { text-decoration: none; color: var(--muted); }
+  nav.toc a:hover { color: var(--ink); }
+
+  /* 섹션 */
+  section.project { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  .eyebrow { display: flex; gap: 12px; align-items: baseline; font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+  .eyebrow .num { font-weight: 800; color: var(--accent); }
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  h2 { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.3; margin: 0 0 8px; letter-spacing: -0.015em; }
+  .sub { color: var(--muted); margin: 0 0 32px; font-size: 18px; }
+  h3 { font-size: 20px; margin: 40px 0 12px; }
+  p { margin: 0 0 14px; }
+  ul.points { padding-left: 20px; margin: 0 0 14px; }
+  ul.points li { margin-bottom: 6px; }
+
+  /* 매체 자리 */
+  figure { margin: 0; }
+  .media {
+    background: var(--paper);
+    border: 1.5px dashed var(--line);
+    border-radius: var(--radius);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    padding: 24px;
+    overflow: hidden;
+    margin: 8px 0 6px;
+  }
+  .media.loaded { border: 1px solid var(--line); padding: 0; background: #000; }
+  .media img, .media video { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .media code { display: block; margin-top: 6px; font-size: 13px; color: var(--ink); }
+  figcaption { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* 역할 나눔 */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0 8px; }
+  .split > div { border-radius: var(--radius); padding: 18px 20px; }
+  .split .human { background: var(--human-soft); }
+  .split .ai { background: var(--ai-soft); }
+  .split h4 { margin: 0 0 8px; font-size: 15px; }
+  .split .human h4 { color: var(--human); }
+  .split .ai h4 { color: var(--ai); }
+  .split ul { margin: 0; padding-left: 18px; font-size: 15.5px; }
+  .split li { margin-bottom: 4px; }
+
+  /* 수치·스파이크 */
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 16px 0; }
+  .fact { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; }
+  .fact b { display: block; font-size: 22px; letter-spacing: -0.01em; }
+  .fact span { font-size: 14.5px; color: var(--muted); }
+
+  /* 흐름 */
+  ol.flow { counter-reset: step; list-style: none; padding: 0; margin: 16px 0; }
+  ol.flow li { counter-increment: step; position: relative; padding: 12px 0 12px 48px; border-top: 1px solid var(--line); }
+  ol.flow li::before { content: counter(step); position: absolute; left: 0; top: 12px; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: var(--paper); font-size: 14px; font-weight: 700; display: grid; place-items: center; }
+
+  /* 기반 카드 */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  #foundation .cards { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 720px) { #foundation .cards { grid-template-columns: 1fr; } }
+  .card h4 { margin: 0 0 4px; font-size: 18px; }
+  .card .meta { font-size: 13.5px; color: var(--muted); margin-bottom: 10px; }
+  .card p { font-size: 15.5px; }
+
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .links a { font-size: 14.5px; text-decoration: none; border: 1px solid var(--ink); border-radius: 999px; padding: 4px 14px; }
+  .links a:hover { background: var(--ink); color: var(--paper); }
+  .links .private { font-size: 14px; color: var(--muted); padding: 5px 0; }
+
+  footer { padding: 56px 0 80px; color: var(--muted); font-size: 15px; }
+
+  @media (max-width: 720px) {
+    body { font-size: 16px; }
+    header.hero { padding-top: 64px; }
+    .split, .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="handle">Vandal · Unity 게임 개발자</div>
+    <h1>AI와 사람이 <em>함께 쓰는</em><br>콘텐츠 제작 도구를 만듭니다</h1>
+    <p class="lead">기능 하나를 구현하는 것보다, 콘텐츠가 계속 늘어날 수 있는 구조를 만드는 데 집중해 왔습니다. 지금은 사람이 쓰는 편집기와 AI 에이전트가 쓰는 인터페이스를 같은 데이터 위에 세우고, 그 위에서 게임을 만들고 있습니다.</p>
+    <ul class="chips">
+      <li>Unity · C#</li>
+      <li>에디터 확장 · 데이터 중심 설계</li>
+      <li>AI 에이전트 워크플로 설계</li>
+      <li>팀 프로젝트 Steam 출시</li>
+    </ul>
+    <nav class="toc">
+      <a href="#caldera">01 Caldera</a>
+      <a href="#perfecther">02 PerfectHer</a>
+      <a href="#workflow">03 AI 작업 환경</a>
+      <a href="#foundation">04 기반 프로젝트</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- 01 Caldera -->
+<section class="project" id="caldera">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">01</span><span>Caldera</span><span class="badge">개발 중</span></div>
+    <h2>평면도에서 걸어 들어갈 수 있는 레벨까지</h2>
+    <p class="sub">협동 생존 게임. 인디 규모로 어디까지 손을 뻗을 수 있는지 확인하는 프로젝트입니다.</p>
+
+    <figure>
+      <div class="media" data-media="media/caldera-editor.mp4" data-alt="Caldera 레벨 설계 편집기: 2D 편집에서 3D 탑뷰, 1인칭으로 전환">
+        녹화 예정 · 2D로 벽을 고치고 → 탑뷰 → 1인칭으로 걸어 들어가는 장면 (10~15초)
+        <code>media/caldera-editor.mp4</code>
+      </div>
+      <figcaption>레벨 설계 편집기. 고친 도면이 3D와 1인칭 화면에 바로 반영됩니다.</figcaption>
+    </figure>
+
+    <h3>레벨 설계 편집기</h3>
+    <p>한 층 평면도를 구조 데이터(JSON)로 두고 브라우저에서 벽·문·방을 편집합니다. 방과 면적은 편집할 때마다 다시 계산하고, 검사 결과를 화면에 핀으로 띄웁니다. <b>T</b>와 <b>Tab</b> 한 번으로 2D, 3D 탑뷰, 1인칭(Three.js) 사이를 오갑니다.</p>
+    <ul class="points">
+      <li><b>사람과 에이전트가 같은 도면을 함께 고칩니다.</b> 서버가 연 도면을 실시간 세션으로 쥐고, 브라우저 탭과 MCP로 붙은 에이전트가 같은 세션을 편집합니다. 에이전트에게 고칠 곳을 알려줄 때는 도면 위에 메모 핀을 꽂습니다.</li>
+      <li><b>평면도를 에이전트가 직접 읽고 잽니다.</b> 직접 만든 <a href="https://github.com/chaaaron000/floorplan-to-game-level">floorplan-to-game-level</a> 스킬로 도면 이미지·PDF를 추적해 편집기로 가져오고, 게임용 FBX로 내보내 검수합니다.</li>
+      <li>빌드 단계와 npm 의존성 없이 Node 22 하나로 돌아갑니다.</li>
+    </ul>
+
+    <div class="split">
+      <div class="human">
+        <h4>제가 정한 것</h4>
+        <ul>
+          <li>도면 데이터 구조와 편집 규칙</li>
+          <li>사람과 에이전트가 한 세션을 공유하는 구조</li>
+          <li>검사 항목과 레벨 수치 기준</li>
+        </ul>
+      </div>
+      <div class="ai">
+        <h4>AI에게 맡긴 것</h4>
+        <ul>
+          <li>편집기 구현과 3D·1인칭 뷰어</li>
+          <li>평면도 추적과 배치 초안</li>
+          <li>FBX 내보내기 검수 스크립트 실행</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>기술 검증 (Phase 1 스파이크)</h3>
+    <p>본 개발 전에, 위험한 기술 요소를 실제 레벨에서 먼저 확인했습니다.</p>
+    <div class="facts">
+      <div class="fact"><b>지연 보상 직접 구현</b><span>왕복 250ms + 손실 5%에서 명중·부위 판정 일치 100%</span></div>
+      <div class="fact"><b>방 172 · 통로 181</b><span>Room/Portal 음향 그래프로 총성 전파, Steam Audio 문 차폐</span></div>
+      <div class="fact"><b>문 159개 레벨</b><span>FishNet 멀티플레이, 근접 음성·무전기, Linux 전용 서버 저장·재시작</span></div>
+    </div>
+
+    <div class="links">
+      <a href="https://github.com/chaaaron000/floorplan-to-game-level">floorplan-to-game-level (공개)</a>
+      <span class="private">본 저장소는 비공개입니다.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 PerfectHer -->
+<section class="project" id="perfecther">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">02</span><span>PerfectHer</span><span class="badge">개발 중</span></div>
+    <h2>혼자서 기획·개발·아트까지 돌리는 파이프라인</h2>
+    <p class="sub">심리적 공포 비주얼 노벨. 사건을 살피고 추리하는 게임플레이를 Naninovel과 Unity로 만들고 있습니다.</p>
+
+    <h3>사건 데이터 편집 시스템</h3>
+    <figure>
+      <div class="media" data-media="media/perfecther-case-editor.mp4" data-alt="PerfectHer 사건 편집기">
+        녹화 예정 · 사건 편집기에서 노드를 고치면 웹 시안에 반영되는 장면
+        <code>media/perfecther-case-editor.mp4</code>
+      </div>
+      <figcaption>사건 하나가 JSON 하나입니다. 사람은 노드 편집기로, 에이전트는 CLI로 같은 파일을 고칩니다.</figcaption>
+    </figure>
+    <ul class="points">
+      <li><b>사람용 편집기와 에이전트용 CLI가 같은 저장 경로를 씁니다.</b> 사건마다 쓰기 잠금을 잡고, 읽은 판(해시)과 지금 파일을 견줘 그 사이 바뀌었으면 쓰지 않습니다.</li>
+      <li><b>원본 하나에서 사본을 한 묶음으로 만듭니다.</b> 저장할 때마다 웹 시안용 JS 사본과 Unity용 사본을 함께 씁니다. 시안에서 확인한 사건이 그대로 게임에 들어갑니다.</li>
+      <li><b>git에서 고친 줄만 보이도록</b> 키 순서와 줄 바꿈 규칙을 고정했습니다.</li>
+    </ul>
+
+    <h3>코드 리뷰 대신 QA 플레이</h3>
+    <p>다른 모델에게 코드 리뷰를 맡겨 봤지만 실제 버그는 거의 잡지 못했습니다. 그래서 QA 전담 에이전트가 Unity Play 모드에서 직접 플레이하게 바꿨습니다. 정답 길과 오답 길을 끝까지 가 보고, 대사 중간 저장·연타·되감기 같은 엇나간 조작을 해 본 뒤 버그를 심각도별로 보고합니다. 잡은 버그는 재현 절차를 회귀 스크립트로 남깁니다.</p>
+    <div class="facts">
+      <div class="fact"><b>회귀 27개 경로</b><span>대사 순서·끝 상태·저장 후 불러오기·콘솔 오류를 매번 비교</span></div>
+      <div class="fact"><b>QA 왕복 최대 3번</b><span>그 뒤에도 남은 문제는 사람이 판단</span></div>
+    </div>
+
+    <h3>AI 아트 파이프라인</h3>
+    <div class="grid-2">
+      <figure>
+        <div class="media" data-media="media/perfecther-3d-background.png" data-alt="Blender MCP로 만든 은신처 3D 배경">
+          이미지 예정 · Blender MCP로 만든 은신처 3D 배경
+          <code>media/perfecther-3d-background.png</code>
+        </div>
+        <figcaption>에이전트가 Blender MCP로 배경을 모델링하고 카메라 구도를 맞춥니다.</figcaption>
+      </figure>
+      <figure>
+        <div class="media" data-media="media/perfecther-title.png" data-alt="3D 배경과 캐릭터를 합성한 타이틀 화면">
+          이미지 예정 · 3D 배경 + ComfyUI 캐릭터를 합성한 타이틀
+          <code>media/perfecther-title.png</code>
+        </div>
+        <figcaption>ComfyUI(comfy CLI)로 캐릭터 시안을 뽑아 합성하고, 검수 에이전트가 확대해 확인합니다.</figcaption>
+      </figure>
+    </div>
+    <p>GPU가 하나라 ComfyUI 생성과 Blender 렌더가 부딪힙니다. 작업마다 사용권을 받아 줄을 서게 하는 GPU 큐를 만들어, 에이전트들이 서로 기다리며 GPU를 나눠 씁니다.</p>
+
+    <div class="split">
+      <div class="human">
+        <h4>제가 정한 것</h4>
+        <ul>
+          <li>사건 데이터 꼴과 저장 규칙</li>
+          <li>QA 흐름과 버그 심각도 기준</li>
+          <li>아트 방향, 시안 선택과 반려</li>
+        </ul>
+      </div>
+      <div class="ai">
+        <h4>AI에게 맡긴 것</h4>
+        <ul>
+          <li>편집기·CLI·Unity 기능 구현</li>
+          <li>QA 플레이와 회귀 스크립트 작성</li>
+          <li>3D 배경·이미지 생성과 1차 검수</li>
+        </ul>
+      </div>
+    </div>
+    <div class="links"><span class="private">저장소는 비공개입니다.</span></div>
+  </div>
+</section>
+
+<!-- 03 Workflow -->
+<section class="project" id="workflow">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">03</span><span>AI 작업 환경</span></div>
+    <h2>여러 AI를 역할별로 나눠 쓰는 방식</h2>
+    <p class="sub">위 두 프로젝트는 모두 이 방식으로 만들고 있습니다.</p>
+
+    <ol class="flow">
+      <li><b>판단 기준을 먼저 적습니다.</b> 저장소마다 AGENTS.md에 우선순위(내 요청 &gt; 정리 문서 &gt; 원천 자료 &gt; 코드 &gt; AI 추론)와 프로젝트 규칙을 둡니다.</li>
+      <li><b>근거와 정리를 나눕니다.</b> 결정 기록과 자료는 raw에, 정리본은 wiki에 두어 AI가 근거를 찾아 씁니다.</li>
+      <li><b>대화와 작업을 나눕니다.</b> 저와 대화하는 오케스트레이터는 일을 쪼개 브리프를 쓰고, 구현과 검수는 새 워커가 맡습니다. 브리프에는 목표, 범위, 정한 결정, 완료 기준, 보고 파일 경로를 담습니다.</li>
+      <li><b>보고를 믿지 않고 확인합니다.</b> 문법 검사기, 테스트, 실제 플레이 결과로 끝을 판단합니다.</li>
+      <li><b>겪은 것을 남깁니다.</b> 제 피드백과 함정은 메모 파일에 쌓아 다음 작업이 같은 실수를 하지 않게 합니다.</li>
+    </ol>
+
+    <div class="cards">
+      <div class="card">
+        <h4>herdr-loadout</h4>
+        <div class="meta">Herdr 플러그인 · Node</div>
+        <p>어떤 역할에 어떤 도구·모델·추론 강도를 쓸지 프로필로 등록해 두고, 오케스트레이터가 적은 컨텍스트로 조회해 워커를 띄웁니다. 터미널 UI와 데스크톱 앱 편집기를 함께 지원합니다.</p>
+      </div>
+      <div class="card">
+        <h4>floorplan-to-game-level</h4>
+        <div class="meta">에이전트 스킬 · Python · Blender</div>
+        <p>건축 평면도를 에이전트가 직접 읽고 재서 IFC와 게임용 FBX로 만들고, 비매니폴드·z-fighting·캡슐 도달 가능성까지 검사합니다.</p>
+        <div class="links"><a href="https://github.com/chaaaron000/floorplan-to-game-level">저장소 보기</a></div>
+      </div>
+      <div class="card">
+        <h4>Naninovel 문법 검사기</h4>
+        <div class="meta">「화면 건너편의 너」 · Node</div>
+        <p>Naninovel 공식 VS Code 확장의 언어 서버를 꺼내 저장소에서 직접 구동했습니다. 에이전트가 시나리오를 고친 뒤 문법 진단을 통과해야 다음 단계로 넘어갑니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 Foundation -->
+<section class="project" id="foundation">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">04</span><span>기반 프로젝트</span></div>
+    <h2>AI 이전부터 이어 온 같은 질문</h2>
+    <p class="sub">콘텐츠를 하나 더 추가할 때 프로그래머가 매번 손대야 하는가?</p>
+
+    <div class="cards">
+      <div class="card">
+        <h4>「화면 건너편의 너」</h4>
+        <div class="meta">비주얼 노벨 · 처음으로 AI 중심으로 개발한 프로젝트</div>
+        <p>미션 데이터의 식별자(GUID)·스크립트 호출용 이름·표시 제목을 분리하고, 커스텀 에디터로 GUID를 복사하고 찾아보던 수작업을 없앴습니다. AI가 만든 첫 화면을 직접 써 보며 패널 분리와 정보 배치를 반복 지시해 완성했습니다.</p>
+        <div class="media" data-media="media/mission-editor.png" data-alt="기본 인스펙터와 미션 에디터 비교" style="aspect-ratio: 16/10">
+          이미지 예정 · Debug 인스펙터 ↔ 미션 에디터 비교
+          <code>media/mission-editor.png</code>
+        </div>
+      </div>
+      <div class="card">
+        <h4>GreenClean</h4>
+        <div class="meta">팀 프로젝트 · Unity</div>
+        <p>콤보·약품 사용 횟수 등 다양한 조건에 따른 마스코트 반응을 위해 ScriptableObject 기반 Blackboard와 조합 가능한 조건 객체를 설계했습니다. 새 반응은 조건 조합만으로 추가하고, 이 조건 시스템은 다른 장르인 「화면 건너편의 너」에서도 재사용했습니다.</p>
+      </div>
+      <div class="card">
+        <h4>MixterPiece</h4>
+        <div class="meta">퍼즐 · Unity</div>
+        <p>격자의 벽을 데이터로 표현하고, 셀 사이 경계를 클릭해 벽을 고치는 전용 커스텀 인스펙터를 만들었습니다. 저장하고 쓰는 데이터뿐 아니라 사람이 그 데이터를 만드는 과정까지 설계한 첫 사례입니다.</p>
+      </div>
+      <div class="card">
+        <h4>Nostalgia</h4>
+        <div class="meta">팀 프로젝트 · 약 1년 · Steam 출시</div>
+        <p>기존 멀티플레이 구조에서 오류 추적과 기능 확장이 어려워지자 Photon Fusion 전환을 제안했고, 팀원이 만든 몬스터 행동 알고리즘을 동작을 유지한 채 Fusion의 FSM 구조로 리팩터링했습니다. 출시 전에는 외부 플레이테스트로 난이도를 조정했습니다.</p>
+      </div>
+    </div>
+    <div class="links">
+      <a href="https://github.com/chaaaron000/game-project-code-archive">코드 아카이브 (Nostalgia · MixterPiece 등)</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>GitHub <a href="https://github.com/chaaaron000">@chaaaron000</a></p>
+  </div>
+</footer>
+
+<script>
+  // data-media 자리에 파일이 올라와 있으면 영상·이미지로 바꾼다. 없으면 안내 문구를 그대로 둔다.
+  document.querySelectorAll('[data-media]').forEach(async (box) => {
+    const src = box.dataset.media;
+    try {
+      const res = await fetch(src, { method: 'HEAD' });
+      if (!res.ok) return;
+    } catch (e) {
+      return;
+    }
+    const ext = src.split('.').pop().toLowerCase();
+    let el;
+    if (ext === 'mp4' || ext === 'webm') {
+      el = document.createElement('video');
+      el.src = src;
+      el.muted = true;
+      el.autoplay = true;
+      el.loop = true;
+      el.playsInline = true;
+      el.setAttribute('muted', '');
+      el.setAttribute('playsinline', '');
+    } else {
+      el = document.createElement('img');
+      el.src = src;
+      el.loading = 'lazy';
+    }
+    el.setAttribute('aria-label', box.dataset.alt || '');
+    if (el.tagName === 'IMG') el.alt = box.dataset.alt || '';
+    box.replaceChildren(el);
+    box.classList.add('loaded');
+  });
+</script>
+</body>
+</html>
